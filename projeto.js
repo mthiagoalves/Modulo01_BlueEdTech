@@ -87,7 +87,7 @@ console.log(
     `\nAo fazer sua espada no elemento ${elementoEscolhido}, ${name} teve que partir em busca de um outro treinamento.`,
 );
 
-console.log(`\nE como sua mãe era uma maga, apresentou ele ao Sishui, que era mestre no elemente ${elementoEscolhido}. E assim começaram
+console.log(`\nE como sua mãe era uma maga, apresentou ele ao Sishui, que era mestre no elemento ${elementoEscolhido}. E assim começaram
 o treinamento de dominio angular ${elementoEscolhido}.\n`);
 
 
@@ -269,6 +269,6 @@ if (lifeBoss === 50000 || lifeBoss === 1000) {
 ${name} com a derrota do dragão foi nomeado a lider da vila, e assim foram pelas proximas 3 gerações. Até uma proxima ameaça aparecer...\n\n\n\n[FIM]`);
 } else {
     console.log(
-        `Você morreu. Bahamut era muito forte. volte ao inicio, treine, derrete o Bahamut e retorne pra casa.`,
+        `\nVocê morreu. Bahamut era muito forte. volte ao inicio, treine, derrete o Bahamut e retorne pra casa.`,
     );
 }
