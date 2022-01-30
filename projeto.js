@@ -12,7 +12,7 @@ da guarda da cidade e também era muito forte.\nCerto dia, em treinamento que ${
 um estranho comerciante passou e contou uma história sobre "As respirações", e falou o nome de um velho que 
 morava no pé da montanha, perto de onde morava e que ele sabia mais sobre esse assunto.
 \nComo ${name} era muito empanhado nos treinamento, decidiu partir em busca do velho para poder aprender
-sobre as respirações.\n`);
+sobre as respirações e se dedicar junto de seu pai na proteção da vila.\n`);
 
 let cont = 0;
 let yes = 0;
@@ -27,14 +27,13 @@ while (sensei !== `sim` && sensei !== `nao`) {
     sensei = prompt(`Conseguiu encontrar o velho?`).toLowerCase();
 }
 
-cont++;
 
 if (sensei === `sim`) {
     console.log(`\nAo encontrar o velho que se chama Izui. Ele pediu para ${name} fazer um teste, se 
 passasse no teste, Izui o treinaria.\n.\n.\n.`);
 
-    console.log(`Depois de 2 anos de treinamento de respiração, para poder fortalecer o corpo, espirito e as habilidades. ${name}
-retorna a sua vila, e seu pai, que está sua espera e já um pouco debilitado pela idade. Pergunta para ele se pode tomar o 
+    console.log(`Depois de 4 anos de treinamento de respiração, para poder fortalecer o corpo, espirito e as habilidades. ${name}
+retorna a sua vila, e seu pai, que está sua espera e já um pouco debilitado devido a idade. E pergunta para ele se pode tomar o 
 posto de guarda da cidade, e fez a seguinte pergunta: \n`);
 } else if (sensei === `nao`) {
     console.log(`\nComo ${name} não encontrou o velho, teve que pesquisar e treinar sozinho.
@@ -42,7 +41,7 @@ Demorou para se fortalecer e voltou para casa, não tão diferente de quando sai
 E ele perguntou para ${name}: \n`);
 }
 
-let body = prompt(`Você conseguiu se fortalecer seu corpo? `).toLowerCase();
+let body = prompt(`Você conseguiu se fortalecer seu corpo com o treinamento que foi fazer? `).toLowerCase();
 
 while (body !== `sim` && body !== `nao`) {
     console.log("\nDigite entre sim e não: \n");
@@ -84,7 +83,7 @@ console.log(
 );
 
 console.log(
-    `\nAo fazer sua espada no elemento ${elementoEscolhido}, ${name} teve que partir em busca de um outro treinamento.`,
+    `\nAo fazer sua espada no elemento ${elementoEscolhido}, ${name} teve que partir em busca de um novo treinamento.`,
 );
 
 console.log(`\nE como sua mãe era uma maga, apresentou ele ao Sishui, que era mestre no elemento ${elementoEscolhido}. E assim começaram
@@ -99,8 +98,6 @@ while (training !== `sim` && training !== `nao`) {
     console.log("\nDigite entre sim e não: \n");
     training = prompt(`Você conseguiu dominar os 76 passos? `).toLowerCase();
 }
-
-cont++;
 
 if (training === `sim`) {
     console.log(
@@ -130,7 +127,6 @@ while (save !== `sim` && save !== `nao`) {
     save = prompt(`Quer salvar a jovem? `).toLowerCase();
 }
 
-cont++;
 
 if (save === `sim`) {
     console.log(
@@ -150,7 +146,6 @@ while (strength !== `sim` && strength !== `nao`) {
     strength = prompt(`Conseguiu acumular forçar? `).toLowerCase();
 }
 
-cont++;
 
 if (strength === `sim`) {
     console.log(
@@ -252,21 +247,21 @@ let valueDmg = +prompt(`${name}, digite seu dmg por golpe: `);
 
 while (valueDmg < 50 || valueDmg > 500) {
     valueDmg = +prompt(
-        `Tenha um entre 50 e 500 AD para enfrentar o Boss. Digite novamente depois de ter treinado: `,
+        `Tenha um entre 50 e 500 AD para enfrentar Bahamut. Digite novamente depois de ter treinado: `,
     );
 }
 
 console.log(
     `\nVocê vai ter que aplicar ${Math.ceil(
         lifeBoss / valueDmg,
-    )} golpes no boss.\n`,
+    )} golpes no Bahamut.\n`,
 );
 
 // CONDIÇÃO FINAL PARA RETORNAR OU VOLTAR AO INICIO;
 
 if (lifeBoss === 50000 || lifeBoss === 1000) {
     console.log(`\nApos ${name} ter derrotado o dragão Bahamut, uma era de paz começou a reinar sobre Vinland Sun.
-${name} com a derrota do dragão foi nomeado a lider da vila, e assim foram pelas proximas 3 gerações. Até uma proxima ameaça aparecer...\n\n\n\n[FIM]`);
+${name} com a derrota do dragão foi nomeado a lider da vila, e assim foram pelas proximas 3 gerações. Até uma proxima ameaça aparecer...\n\n[FIM]`);
 } else {
     console.log(
         `\nVocê morreu. Bahamut era muito forte. volte ao inicio, treine, derrete o Bahamut e retorne pra casa.`,
