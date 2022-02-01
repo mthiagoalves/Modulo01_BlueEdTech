@@ -1,7 +1,11 @@
 const prompt = require ('prompt-sync')();
 
-while (true) {
+console.log(`Bem vindo ao Jokenpo, divirta-se.\n`)
 
+while (true) {  // REPETIÇÃO PARA O JOGADOR ESCOLHER SE QUER OU NÃO JOGAR DE NOVO.
+
+
+// VARIAVEIS PRINCIPAIS 
 const escolha = ["pedra" , "papel" , "tesoura"];
 let escolhaAleatoria;
 let placar = 0;
@@ -9,6 +13,8 @@ let placarPc = 0;
 let numRodadas = +prompt (`Escolha o numero de rodadas que deseja jogar: `);
 
 console.log();
+
+// PARTE DO USUARIO PARA ESCOLHA DA JOGADA.
 
 for(i = 0; i < numRodadas; i++){
 
@@ -18,12 +24,15 @@ while (escolhaUsuario != 'pedra' && escolhaUsuario != 'papel' && escolhaUsuario 
     escolhaUsuario = prompt (`Por favor digite a opção entre "pedra", "papel" e "tesoura":`);
 }
 
+// PARTE ONDE O COMPUTADOR FAZ A JOGADA DELE.
 
 let resultadoComputador;
 escolhaAleatoria = [Math.floor((Math.random()*escolha.length))];
 
 
 resultadoComputador = escolha[escolhaAleatoria];    
+
+// CONDIÇÕES PARA VER OS RESULTADOS E COMBILIZAR PONTOS DE QUEM GANHOU 
 
 if(resultadoComputador == escolhaUsuario){
         console.log(`O jogo deu EMPATE. O computador também escolheu ${resultadoComputador}.\n`);
@@ -41,6 +50,8 @@ else{
 } 
 }
 
+// CONDIÇÃO PARA EXIBIÇÃO DO PLACAR. 
+
 if(placar > placarPc){
         console.log(`VOCÊ GANHOU !!!! A sua pontuação foi "${placar}" e o da maquina foi "${placarPc}".`);
     }
@@ -51,12 +62,14 @@ if(placar > placarPc){
 console.log();
 
   let jogarNovamente = prompt(`Deseja jogar novamente? `);
-
+  console.log();
+  
   if (jogarNovamente == 'sim') {
+   
   } 
   
   else{
-      console.log(`Volte semprem quando quiser. Obrigado por jogar.`);
+      console.log(`Volte semprem que quiser. Obrigado por jogar.`);
       break;
   }
 }
