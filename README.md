@@ -27,13 +27,4 @@ Receber o elemento escolhido pelo usuário;
 Escolher um elemento aleatório para o computador;
 Comparar os dois elementos e declarar um vencedor.
 Você pode adaptar o jogo ao seu projeto criado anteriormente (por exemplo fazer um: "Espada, Escudo e Magia") para incrementar ainda mais o seu projeto. Apenas lembre-se de deixar claro para o usuário como funcionará o jogo nesse caso (quem ganha e quem perde de quem).
-Requisitos
-Para esse projeto, os requisitos fundamentais serão:
-Permitir que eu decida quantas rodadas iremos fazer;
-Ler a minha escolha (Pedra, papel ou tesoura, ou os elementos escolhidos por você para o seu jogo);
-Decidir de forma aleatória a decisão do computador;
-Comparar os valores e declarar o vencedor (marcando 1 vitória para ele);
-Repetir os passos 2, 3 e 4 de acordo com o número de rodadas escolhido;
-Ao final das repetições, mostrar quantas rodadas cada jogador ganhou;
-Determinar quem foi o grande campeão de acordo com a quantidade de vitórias de cada um (computador e jogador);
-Perguntar se o Jogador quer jogar novamente: Se sim volte ao primeiro passo, se não finalize o programa.
+
