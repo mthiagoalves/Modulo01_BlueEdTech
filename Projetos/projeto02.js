@@ -7,9 +7,9 @@ E funciona assim: a tesoura corta o papel, mas quebra com a pedra; o papel embru
 mas é cortado pela tesoura e a pedra quebra a tesoura e é embrulhada pelo papel.\n`);
 console.log(`Então vamos começar! \n`);
 
-while (true) {
-  // REPETIÇÃO PARA O JOGADOR ESCOLHER SE QUER OU NÃO JOGAR DE NOVO.
+// REPETIÇÃO PARA O JOGADOR ESCOLHER SE QUER OU NÃO JOGAR DE NOVO.
 
+while (true) {
   // VARIAVEIS PRINCIPAIS
   const escolha = ["pedra", "papel", "tesoura"];
   let escolhaAleatoria;
@@ -17,6 +17,20 @@ while (true) {
   let placarPc = 0;
 
   let numRodadas = +prompt(`Escolha o numero de rodadas que deseja jogar: `);
+
+  //VALIDAÇÃO DO USUARIO NA ESCOLHA DO NUMERO DE RODADAS
+
+  while (true) {
+    numRodadas = prompt(`Favor digite o numero de rodadas corretamente: `);
+    if (
+      !isNaN(numRodadas) &&
+      numRodadas > 0 &&
+      numRodadas % 1 == 0 &&
+      numRodadas.length != 0
+    ) {
+      break;
+    }
+  }
 
   console.log();
 
