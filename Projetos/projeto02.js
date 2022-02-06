@@ -115,7 +115,7 @@ while (true) {
 
   if (placar > placarPc) {
     console.log(
-      `VOCÊ GANHOU !!!! Você fez"${placar}" pontos e a maquina fez "${placarPc}" pontos.\n`
+      `VOCÊ GANHOU !!!! Você fez "${placar}" pontos e a maquina fez "${placarPc}" pontos.\n`
     );
   } else if (placar < placarPc) {
     console.log(
@@ -135,6 +135,16 @@ while (true) {
     console.log(`Volte semprem que quiser. Obrigado por jogar.`);
     break;
   }
+
+  console.log(`Começando a partida novamente. Prepare-se!`);
+
+  tempo();
+  console.log(`.`);
+  tempo();
+  console.log(`.`);
+  tempo();
+  console.log(`.`);
+
   console.clear();
 }
 
