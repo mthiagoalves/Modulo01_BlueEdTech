@@ -15,13 +15,12 @@ while (true) {
   let escolhaAleatoria;
   let placar = 0;
   let placarPc = 0;
-
-  let numRodadas = +prompt(`Escolha o numero de rodadas que deseja jogar: `);
+  let numRodadas;
 
   //VALIDAÇÃO DO USUARIO NA ESCOLHA DO NUMERO DE RODADAS
 
   while (true) {
-    numRodadas = prompt(`Favor digite o numero de rodadas corretamente: `);
+    numRodadas = +prompt(`Digite o número de rodadas você deseja jogar: `);
     if (
       !isNaN(numRodadas) &&
       numRodadas > 0 &&
@@ -43,7 +42,7 @@ while (true) {
   for (i = 0; i < numRodadas; i++) {
     let escolhaUsuario = prompt(
       `${i + 1}º rodada - Escolha entre pedra, papel e tesoura: `
-    );
+    ).toLowerCase();
 
     while (
       escolhaUsuario != "pedra" &&
@@ -52,7 +51,7 @@ while (true) {
     ) {
       escolhaUsuario = prompt(
         `Por favor digite a sua escolha entre "pedra", "papel" e "tesoura": `
-      );
+      ).toLowerCase();
     }
 
     // RANDOMIZAÇÃO E ESCOLHA DO COMPUTADOR
@@ -62,16 +61,16 @@ while (true) {
     escolhaAleatoria = [Math.floor(Math.random() * escolha.length)];
     resultadoComputador = escolha[escolhaAleatoria];
 
-    //FUNCTION PARA PAUSAR A PALAVRA "JO-KEN-PO"
+    //ARROW FUNCTION PARA PAUSAR A PALAVRA "JO-KEN-PO"
 
-    function tempo(ms) {
+    tempo = (ms) => {
       var contar = new Date().getTime();
       for (var i = 0; i < 3e6; i++) {
         if (new Date().getTime() - contar > ms) {
           break;
         }
       }
-    }
+    };
 
     console.log(`\nVamos lá!!\n`);
 
@@ -128,14 +127,10 @@ while (true) {
     );
   }
 
-  let jogarNovamente = prompt(`Deseja jogar novamente? `);
+  let jogarNovamente = prompt(`Deseja jogar novamente? `).toLowerCase();
   console.log();
 
-  if (
-    jogarNovamente == "sim" ||
-    jogarNovamente == "s" ||
-    jogarNovamente == "SIM"
-  ) {
+  if (jogarNovamente == "sim" || jogarNovamente == "s") {
   } else {
     console.log(`Volte semprem que quiser. Obrigado por jogar.`);
     break;
