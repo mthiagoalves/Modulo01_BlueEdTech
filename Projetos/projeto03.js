@@ -188,16 +188,22 @@ porém, ninguem nunca tinha visto. Como não tinha treinado, sua mãe lhe abenç
 Com os atributos: `
   );
   console.table(golem);
-  console.log(``);
-  // let matarGolen = prompt(`Deseja enfrentar o golem mesmo estando fraco? `);
-  // validacao(matarGolen);
-  // if (matarGolen == `sim` || matarGolen == `s`) {
-  //   console.log(
-  //     `Você não tem atributos suficientes para enfrentar o golem. Volte depois que estiver mais forte.`
-  //   );
-  // } else if (matarGolen == `nao` || matarGolen == `não` || matarGolen == `n`) {
-  //   console.log(
-  //     `${nomePersonagem} viu que não conseguiria lutar com o golem, e retornou para casa.`
-  //   );
-  // }
+  console.log(
+    `No caminho de volta pra casa ${nomePersonagem} encontra um Elfo que ficou muito elforico ao ver o amuleto que ${nomePersonagem} carregava.`
+  );
+
+  let amuleto = prompt(
+    `Deseja saber mais sobre esse amuleto que você carrega? Perguntou o Elfo `
+  );
+  validacao(amuleto);
+  if (amuleto == `sim` || amuleto == `s`) {
+    console.log(
+      `Esse amuleto foi forjado pelos elfos ancestrais, e colocaram nele os espiritos elementais da floresta.
+Sendo eles: Fogo, Agua, Terra e Ar.`
+    );
+  } else if (amuleto == `nao` || amuleto == `não` || amuleto == `n`) {
+    console.log(
+      `${nomePersonagem} seguiu em frente sem dar bola pro Elfo, chegando em casa para a janta.`
+    );
+  }
 }
