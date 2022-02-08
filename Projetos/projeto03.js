@@ -201,6 +201,9 @@ Com os atributos: `
       `Esse amuleto foi forjado pelos elfos ancestrais, e colocaram nele os espiritos elementais da floresta.
 Sendo eles: Fogo, Agua, Terra e Ar.`
     );
+    console.log(
+      `O elfo falou sobre um velho amigo que morava no pé da montanha que poderia treinar e ensinar ele mais sobre os elementos`
+    );
   } else if (amuleto == `nao` || amuleto == `não` || amuleto == `n`) {
     console.log(
       `${nomePersonagem} seguiu em frente sem dar bola pro Elfo, chegando em casa para a janta.`
