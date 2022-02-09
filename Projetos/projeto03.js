@@ -12,6 +12,8 @@ let idadePersonagem = +prompt(`Digite a idade do seu personagem: `);
 let elementoEscolhido;
 let numeroDias = +prompt(`Quantos dias jogar? `);
 
+//OBJETO PRINCIPAL COM TODAS AS VARIAÇÕES DE STATUS DO PERSONAGEM.
+
 const dadosPersonagem = {
   nome: nomePersonagem,
   idade: idadePersonagem,
