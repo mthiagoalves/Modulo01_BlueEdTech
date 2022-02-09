@@ -23,10 +23,10 @@ const dadosPersonagem = {
 
   aumentarStatus: function (status) {
     if (status == `s` || status == `sim` || status == true) {
-      this.ataque += 10;
-      this.vida += 10;
-      this.agilidade += 8;
-      this.defesa += 8;
+      this.ataque += 15;
+      this.vida += 15;
+      this.agilidade += 11;
+      this.defesa += 9;
       this.energia -= 5;
       console.log(
         `\nSeus status aumentaram para:\nVida: ${this.vida}\nAtaque: ${this.ataque}\nAgilidade: ${this.agilidade}\nDefesa: ${this.defesa}\nEnergia: ${this.energia}`
@@ -137,13 +137,13 @@ const dadosPersonagem = {
 
   recuperarEnergia: function () {
     const cardapio = [
-      ["arroz", 3],
-      ["feijao", 3],
-      ["carne de boi", 5],
-      ["carne de frango", 5],
-      ["verduras", 3],
-      ["legumes", 3],
-      ["salada", 3],
+      ["arroz", 9],
+      ["feijao", 9],
+      ["carne de boi", 15],
+      ["carne de frango", 13],
+      ["verduras", 7],
+      ["legumes", 8],
+      ["salada", 6],
     ];
 
     for (let comida of cardapio) {
@@ -265,7 +265,7 @@ Ficou se questionando: \n`
 
   let irTreinar = prompt(`Será que vou treinar hoje? `).toLowerCase();
   tempo();
-  dadosPersonagem.aumentoStatus(irTreinar);
+  dadosPersonagem.aumentarStatus(irTreinar);
   dadosPersonagem.diminuirStatus(irTreinar);
   validacao(irTreinar);
   tempo();
@@ -280,7 +280,7 @@ Ficou se questionando: \n`
 
       tempo();
 
-      dadosPersonagem.aumentoStatus(irTreinar);
+      dadosPersonagem.aumentarStatus(irTreinar);
     }
     tempo();
 
