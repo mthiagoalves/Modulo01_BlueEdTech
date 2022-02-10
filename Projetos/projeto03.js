@@ -1,4 +1,6 @@
 const prompt = require("prompt-sync")();
+const { Console } = require("console");
+const { Transform } = require("stream");
 
 console.log(
   `Em um reino distante, chamado Albion Flame, havia uma vila que era muito abençoada, com terra fértil, água fresca, e muita mata, e chamada Lorencia.
@@ -92,17 +94,17 @@ const dadosPersonagem = {
   },
 
   poderElementalFuria: function () {
-    const elementos = ["fogo", "agua", "terra", "ar"];
+    const elementos = ["FOGO", "AGUA", "TERRA", "AR"];
 
     do {
       elementoEscolhido = prompt(
         `${nomePersonagem}, chame por um elemento: `
-      ).toLowerCase();
+      ).toUpperCase();
     } while (!elementos.includes(elementoEscolhido));
 
     console.log(`\n${elementoEscolhido}!!! Gritou ${nomePersonagem}.\n`);
 
-    if (elementoEscolhido == `fogo`) {
+    if (elementoEscolhido == `FOGO`) {
       this.vida += 4899;
       this.ataque += 12450;
       this.agilidade += 8754;
@@ -110,7 +112,7 @@ const dadosPersonagem = {
       console.log(`Desceu um bola de fogo do alto e envolveu ${nomePersonagem}. Seus atributos aumentaram para: 
   Vida: ${this.vida} (+4899)\nAtaque: ${this.ataque} (+12450)
   Agilidade: ${this.agilidade} (+8754)\nDefesa${this.defesa} (+4205)`);
-    } else if (elementoEscolhido == `agua`) {
+    } else if (elementoEscolhido == `AGUA`) {
       this.vida += 12450;
       this.ataque += 4899;
       this.agilidade += 4205;
@@ -118,7 +120,7 @@ const dadosPersonagem = {
       console.log(`A chuva aumentou dratiscamente cercando ${nomePersonagem}. Seus atributos aumentaram para: 
   Vida: ${this.vida} (+12450)\nAtaque: ${this.ataque} (+4899)
   Agilidade: ${this.agilidade}(+4205)\nDefesa: ${this.defesa} (+8754)`);
-    } else if (elementoEscolhido == `terra`) {
+    } else if (elementoEscolhido == `TERRA`) {
       this.vida += 8754;
       this.ataque += 4205;
       this.agilidade += 4899;
@@ -126,7 +128,7 @@ const dadosPersonagem = {
       console.log(`A terra começou a se agitar em volta de ${nomePersonagem}. Seus atributos aumentaram para: 
   Vida: ${this.vida} (+8754)\nAtaque: ${this.ataque} (+4205)
   Agilidade: ${this.agilidade} (+4899)\nDefesa: ${this.defesa} (+12450)`);
-    } else if (elementoEscolhido == `ar`) {
+    } else if (elementoEscolhido == `AR`) {
       this.vida += 4899;
       this.ataque += 8754;
       this.agilidade += 12450;
@@ -139,17 +141,19 @@ const dadosPersonagem = {
 
   recuperarEnergia: function () {
     const cardapio = [
-      ["arroz", 9],
-      ["feijao", 9],
-      ["carne de boi", 15],
-      ["carne de frango", 13],
-      ["verduras", 7],
-      ["legumes", 8],
-      ["salada", 6],
+      ["Arroz", 9],
+      ["Feijao", 9],
+      ["Carne de boi", 15],
+      ["Carne de frango", 13],
+      ["Verduras", 7],
+      ["Legumes", 8],
+      ["Salada", 6],
     ];
 
     for (let comida of cardapio) {
-      let escolhaComida = prompt(`Deseja comer ${comida[0]}? `).toLowerCase();
+      let escolhaComida = prompt(
+        `Quer adicionar ${comida[0]} no seu prato? `
+      ).toLowerCase();
       validacao(escolhaComida);
       if (escolhaComida == "sim" || escolhaComida == `s`) {
         dadosPersonagem.energia += comida[1];
@@ -158,45 +162,47 @@ const dadosPersonagem = {
   },
 };
 
-const lobo = {
-  vida: 25,
-  ataque: 70,
-  agilidade: 30,
-  defesa: 30,
-  elemento: `neutro`,
-};
+//ARRAY OBJETOS COM OS STATUS DOS MOSNTROS
 
-const orc = {
-  vida: 150,
-  ataque: 130,
-  defesa: 100,
-  agilidade: 70,
-  elemento: `ar`,
-};
+const lobo = [
+  { Atributo: "Vida", Valor: 35 },
+  { Atributo: "Ataque", Valor: 70 },
+  { Atributo: "Agilidade", Valor: 30 },
+  { Atributo: "Defesa", Valor: 30 },
+  { Atributo: "Elemento", Valor: "Neutro" },
+];
 
-const dragao = {
-  vida: 550,
-  ataque: 1350,
-  defesa: 350,
-  agilidade: 145,
-  elemento: `fogo`,
-};
+const orc = [
+  { Atributo: "Vida", Valor: 150 },
+  { Atributo: "Ataque", Valor: 130 },
+  { Atributo: "Agilidade", Valor: 100 },
+  { Atributo: "Defesa", Valor: 70 },
+  { Atributo: "Elemento", Valor: "Ar" },
+];
 
-const golem = {
-  vida: 200,
-  ataque: 120,
-  agilidade: 20,
-  defesa: 500,
-  elemento: `Terra`,
-};
+const dragao = [
+  { Atributo: "Vida", Valor: 550 },
+  { Atributo: "Ataque", Valor: 1350 },
+  { Atributo: "Agilidade", Valor: 350 },
+  { Atributo: "Defesa", Valor: 145 },
+  { Atributo: "Elemento", Valor: "Fogo" },
+];
 
-const necromante = {
-  vida: 550,
-  ataque: 1350,
-  defesa: 350,
-  agilidade: 145,
-  elemento: `DARKNESS`,
-};
+const golem = [
+  { Atributo: "Vida", Valor: 200 },
+  { Atributo: "Ataque", Valor: 120 },
+  { Atributo: "Agilidade", Valor: 20 },
+  { Atributo: "Defesa", Valor: 500 },
+  { Atributo: "Elemento", Valor: "Terra" },
+];
+
+const necromante = [
+  { Atributo: "Vida", Valor: 1540 },
+  { Atributo: "Ataque", Valor: 2850 },
+  { Atributo: "Agilidade", Valor: 1985 },
+  { Atributo: "Defesa", Valor: 1644 },
+  { Atributo: "Elemento", Valor: "Darkness" },
+];
 
 // ARROW FUNCTION PARA PAUSAR TEMPO DE EXECUÇÃO
 
@@ -207,6 +213,29 @@ tempo = (ms) => {
       break;
     }
   }
+};
+
+//ARROW FUNCTION PARA PERSONALIZAR O TEXTO INDEX DO CONSOLE.TABLE
+
+table = (input) => {
+  const ts = new Transform({
+    transform(chunk, enc, cb) {
+      cb(null, chunk);
+    },
+  });
+  const logger = new Console({ stdout: ts });
+  logger.table(input);
+  const table = (ts.read() || "").toString();
+  let result = "";
+  for (let row of table.split(/[\r\n]+/)) {
+    let r = row.replace(/[^┬]*┬/, "┌");
+    r = r.replace(/^├─*┼/, "├");
+    r = r.replace(/│[^│]*/, "");
+    r = r.replace(/^└─*┴/, "└");
+    r = r.replace(/'/g, " ");
+    result += `${r}\n`;
+  }
+  console.log(result);
 };
 
 //ARROW FUNCTION PARA VALIDAÇÃO DA RESPOSTA DO USUARIO
@@ -317,21 +346,23 @@ ${nomePersonagem} pegou sua espada e correu para ajuda-lá.`);
 
       tempo();
 
-      console.table(lobo);
+      table(lobo);
+
+      tempo();
 
       //CONDIÇÃO PARA PRIMEIRA LUTA DO PERSONAGEM.
 
-      let matarLobo;
       if (
-        (matarLobo =
-          dadosPersonagem.ataque > lobo.vida && dadosPersonagem.energia != 0)
+        lobo[1]["Valor"] < dadosPersonagem.ataque &&
+        dadosPersonagem.energia != 0
       ) {
         console.log(
           `Foram necessárias ${Math.ceil(
-            lobo.vida / dadosPersonagem.ataque
+            (lobo[0]["Valor"] + lobo[3]["Valor"]) /
+              (dadosPersonagem.ataque + dadosPersonagem.agilidade)
           )} investidas para conseguir matar o lobo. `
         );
-        dadosPersonagem.aumentoStatus(matarLobo);
+        dadosPersonagem.aumentarStatus();
       } else {
         console.log(
           `Você não conseguiu ajudar a ovelha, e o lobo acabou matando ela.`
@@ -345,6 +376,7 @@ ${nomePersonagem} pegou sua espada e correu para ajuda-lá.`);
       console.log(`\nRealmente ${nomePersonagem} não estava em um bom dia.`);
     }
     tempo();
+
     console.log(
       `\nJa no horário do almoço ${dadosPersonagem.nome} voltou para casa para comer, para poder assim, recuperar as energias.\n`
     );
@@ -377,9 +409,12 @@ de seu pai, e quando foi se despedir de sua mãe, ela entregou um amuleto para e
       console.log(`\n${nomePersonagem} acabou ficando com "${dadosPersonagem.energia}" de energia por ter que andar o caminho todo mesmo sendo o atalho.
 Mesmo sabendo que era perigoso e decidiu ir pelo atalho assim mesmo. ${nomePersonagem} acabou dando de frente com um Orc, que não deixou que passasse ou recuasse.`);
 
-      console.table(orc);
+      table(orc);
 
-      if (dadosPersonagem.ataque < orc.vida && dadosPersonagem.energia != 0) {
+      if (
+        dadosPersonagem.ataque < orc[0]["Valor"] &&
+        dadosPersonagem.energia != 0
+      ) {
         console.log(
           `O orc é muito superior em todos os atributos, ${nomePersonagem} não vai conseguir derrota-lo assim.\n`
         );
@@ -398,7 +433,7 @@ Aparece um espirito elementar em sua frente e pergunta para ${nomePersonagem}: \
         dadosPersonagem.energia -= 35;
         console.log(
           `\nAgora com seu novo poder ${nomePersonagem} precisou de ${Math.ceil(
-            (orc.vida + orc.defesa) /
+            (orc[0]["Valor"] + orc[3]["Valor"]) /
               (dadosPersonagem.ataque + dadosPersonagem.agilidade)
           )} investidas para eliminar e passar pelo Orc. E sua energia caiu para ${
             dadosPersonagem.energia
@@ -424,29 +459,33 @@ Com seu novo poder de invocação, terá que treinar mais para aprimorar suas ha
           `Depois de um dia longo ${nomePersonagem} precisa descansar.`
         );
       } else if (
-        dadosPersonagem.ataque > orc.vida &&
+        dadosPersonagem.ataque > orc[0]["Valor"] &&
         dadosPersonagem.energia != 0
       ) {
         dadosPersonagem.energia -= 35;
         console.log(
           `Foram necessárias ${Math.ceil(
-            (orc.vida + orc.defesa) /
+            (orc[0]["Valor"] + orc[3]["Valor"]) /
               (dadosPersonagem.ataque + dadosPersonagem.agilidade)
           )} investidas para conseguir matar o Orc. E sua energia caiu para ${
             dadosPersonagem.energia
           }. `
         );
-        dadosPersonagem.aumentoStatus(matarOrc);
+
+        dadosPersonagem.aumentarStatus();
       }
     } else if (caminho == `nao` || caminho == `não` || caminho == `n`) {
       dadosPersonagem.energia -= 25;
+
       console.log(
         `\nComo pegou o caminho mais longo ${nomePersonagem} acabou perdendo energia.\nEnergia atual: ${dadosPersonagem.energia}.\n`
       );
+
       console.log(`\nChegando na floresta, ${nomePersonagem} começou sua caçada, que foi tranquila, e conseguiu levar alguns suprimentos para casa.
 No meio do caminho ele encontra um jovem pedindo ajuda.\n`);
 
       let jovem = prompt(`Deseja ajudar o jovem? `).toLowerCase();
+
       validacao(jovem);
 
       //TERCEIRA CONDIÇÃO DA HISTORIA QUE DETERMINA A DIREÇÃO DO PERSONAGEM.
@@ -487,14 +526,16 @@ enfrentar o dragão, porém, os atributos do dragão eram muito altos.\n`);
         ) {
           let resultadoLuta1 =
             (dadosPersonagem.vida + dadosPersonagem.defesa) %
-            (dragao.ataque + dragao.agilidade);
+            (dragao[1]["Valor"] + dragao[2]["Valor"]);
           let resultadoLuta2 =
-            (dragao.vida + dragao.defesa) %
+            (dragao[0]["Valor"] + dragao[3]["Valor"]) %
             (dadosPersonagem.ataque + dadosPersonagem.agilidade);
+
           if (resultadoLuta1 > resultadoLuta2) {
             console.log(
               `\nO dragão é muito forte, está acabando com todas as forças que ${nomePersonagem} tem. Mas não pode desistir, sua vila vai acabar em ruinas...\n`
             );
+
             tempo();
             console.log(`Tutuh`);
             tempo();
@@ -527,9 +568,10 @@ E ele grita: - Por favor não! Por favor!`);
               `${nomePersonagem} recebeu um aumento enerme no seu poder elemental. Agora ele conseguirá derrotar o dragão. `
             );
             dadosPersonagem.energia -= 45;
+
             console.log(
               `Agora com seu novo poder ${nomePersonagem} precisou de ${Math.ceil(
-                (dragao.vida + dragao.defesa) /
+                (dragao[0]["Valor"] + dragao[3]["Valor"]) /
                   (dadosPersonagem.ataque + dadosPersonagem.agilidade)
               )} investidas para eliminar o dragao. E sua energia caiu para ${
                 dadosPersonagem.energia
@@ -638,6 +680,7 @@ So que fica indagando se solta ou não o golem.`
         );
 
         let soltarGolem = prompt(`Soltar o golem? `).toLowerCase();
+
         validacao(soltarGolem);
 
         if (
@@ -650,7 +693,7 @@ So que fica indagando se solta ou não o golem.`
           dadosPersonagem.energia -= 25;
           console.log(
             `Agora com seu novo poder ${nomePersonagem} precisou de ${Math.ceil(
-              (golem.vida + golem.defesa) /
+              (golem[0]["Valor"] + golem[3]["Valor"]) /
                 (dadosPersonagem.ataque + dadosPersonagem.agilidade)
             )} investidas para eliminar o golem. E sua energia caiu para ${
               dadosPersonagem.energia
@@ -698,7 +741,9 @@ ${nomePersonagem} se enfurece demais e pensa: `);
 
       let enfentrarNecro = prompt(`Será que devo enfrentar esse Necromante? `);
       validacao(enfentrarNecro);
+
       dadosPersonagem.energia -= 40;
+
       if (
         enfentrarNecro == `sim` ||
         (enfentrarNecro == `s` && dadosPersonagem.energia != 0)
@@ -733,7 +778,7 @@ E ele grita: - Por favor não! Por favor!`);
         );
         console.log(
           `Agora com seu novo poder ${nomePersonagem} parte pra cima do necromante e desfere ${Math.ceil(
-            (necromante.vida + necromante.defesa) /
+            (necromante[0]["Valor"] + necromante[3]["Valor"]) /
               (dadosPersonagem.ataque + dadosPersonagem.agilidade)
           )} golpes, que foi o suficiente para matar o necromante.
         `
