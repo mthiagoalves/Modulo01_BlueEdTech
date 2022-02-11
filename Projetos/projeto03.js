@@ -9,12 +9,12 @@ Albion Flame é um reino mágico cheio de criaturas e varios caminhos para ser e
 
 // PRINCIPAIS VARIAVEIS E OBJETOs DOs STATUS DOS PERSONAGENS DA HISTORIA
 
-let nomePersonagem = prompt(`Digite o nome do personagem da história: `);
-let idadePersonagem = +prompt(`Digite a idade do seu personagem: `);
+const nomePersonagem = prompt(`Digite o nome do personagem da história: `);
+const idadePersonagem = +prompt(`Digite a idade do seu personagem: `);
 let elementoEscolhido;
-let numeroDias = +prompt(`Quantos dias jogar? `);
+const numeroDias = +prompt(`Quantos dias jogar? `);
 
-//OBJETO PRINCIPAL COM TODAS AS VARIAÇÕES DE STATUS DO PERSONAGEM.
+// OBJETO PRINCIPAL COM TODAS AS VARIAÇÕES DE STATUS DO PERSONAGEM.
 
 const dadosPersonagem = {
   nome: nomePersonagem,
@@ -26,7 +26,7 @@ const dadosPersonagem = {
   energia: 100,
 
   aumentarStatus: function (status) {
-    if (status == `s` || status == `sim` || status == true) {
+    if (status === `s` || status === `sim` || status) {
       this.ataque += 15;
       this.vida += 15;
       this.agilidade += 11;
@@ -39,7 +39,7 @@ const dadosPersonagem = {
   },
 
   diminuirStatus: function (status) {
-    if (status == `n` || status == `nao` || status == false) {
+    if (status === `n` || status === `nao` || !status) {
       this.ataque -= 10;
       this.vida -= 10;
       this.agilidade -= 8;
@@ -62,28 +62,28 @@ const dadosPersonagem = {
 
     console.log(`\nVocê invocoou o elemento "${elementoEscolhido}".\n`);
 
-    if (elementoEscolhido == `fogo`) {
+    if (elementoEscolhido === `fogo`) {
       this.vida += 70;
       this.ataque += 150;
       this.agilidade += 84;
       this.defesa += 50;
       console.log(`O elemento fogo é focado no ataque. Seus atributos aumentaram para: 
     \nVida: ${this.vida} (+70)\nAtaque: ${this.ataque} (+150)\nAgilidade: ${this.agilidade} (+84)\nDefesa${this.defesa} (+50)`);
-    } else if (elementoEscolhido == `agua`) {
+    } else if (elementoEscolhido === `agua`) {
       this.vida += 150;
       this.ataque += 53;
       this.agilidade += 50;
       this.defesa += 88;
       console.log(`O elemento agua é focado na vida. Seus atributos aumentaram para: 
     \nVida: ${this.vida} (+150)\nAtaque: ${this.ataque} (+53)\nAgilidade: ${this.agilidade}(+50)\nDefesa: ${this.defesa} (+88)`);
-    } else if (elementoEscolhido == `terra`) {
+    } else if (elementoEscolhido === `terra`) {
       this.vida += 87;
       this.ataque += 45;
       this.agilidade += 50;
       this.defesa += 150;
       console.log(`O elemento terra é focado na defesa. Seus atributos aumentaram para: 
     \nVida: ${this.vida} (+87)\nAtaque: ${this.ataque} (+45)\nAgilidade: ${this.agilidade} (+50)\nDefesa: ${this.defesa} (+150)`);
-    } else if (elementoEscolhido == `ar`) {
+    } else if (elementoEscolhido === `ar`) {
       this.vida += 50;
       this.ataque += 80;
       this.agilidade += 150;
@@ -104,7 +104,7 @@ const dadosPersonagem = {
 
     console.log(`\n${elementoEscolhido}!!! Gritou ${nomePersonagem}.\n`);
 
-    if (elementoEscolhido == `FOGO`) {
+    if (elementoEscolhido === `FOGO`) {
       this.vida += 4899;
       this.ataque += 12450;
       this.agilidade += 8754;
@@ -112,7 +112,7 @@ const dadosPersonagem = {
       console.log(`Desceu um bola de fogo do alto e envolveu ${nomePersonagem}. Seus atributos aumentaram para: 
   Vida: ${this.vida} (+4899)\nAtaque: ${this.ataque} (+12450)
   Agilidade: ${this.agilidade} (+8754)\nDefesa${this.defesa} (+4205)`);
-    } else if (elementoEscolhido == `AGUA`) {
+    } else if (elementoEscolhido === `AGUA`) {
       this.vida += 12450;
       this.ataque += 4899;
       this.agilidade += 4205;
@@ -120,7 +120,7 @@ const dadosPersonagem = {
       console.log(`A chuva aumentou dratiscamente cercando ${nomePersonagem}. Seus atributos aumentaram para: 
   Vida: ${this.vida} (+12450)\nAtaque: ${this.ataque} (+4899)
   Agilidade: ${this.agilidade}(+4205)\nDefesa: ${this.defesa} (+8754)`);
-    } else if (elementoEscolhido == `TERRA`) {
+    } else if (elementoEscolhido === `TERRA`) {
       this.vida += 8754;
       this.ataque += 4205;
       this.agilidade += 4899;
@@ -128,7 +128,7 @@ const dadosPersonagem = {
       console.log(`A terra começou a se agitar em volta de ${nomePersonagem}. Seus atributos aumentaram para: 
   Vida: ${this.vida} (+8754)\nAtaque: ${this.ataque} (+4205)
   Agilidade: ${this.agilidade} (+4899)\nDefesa: ${this.defesa} (+12450)`);
-    } else if (elementoEscolhido == `AR`) {
+    } else if (elementoEscolhido === `AR`) {
       this.vida += 4899;
       this.ataque += 8754;
       this.agilidade += 12450;
@@ -150,12 +150,12 @@ const dadosPersonagem = {
       ["Salada", 6],
     ];
 
-    for (let comida of cardapio) {
+    for (const comida of cardapio) {
       let escolhaComida = prompt(
         `Quer adicionar ${comida[0]} no seu prato? `
       ).toLowerCase();
       validacao(escolhaComida);
-      if (escolhaComida == "sim" || escolhaComida == `s`) {
+      if (escolhaComida === "sim" || escolhaComida === `s`) {
         dadosPersonagem.energia += comida[1];
       }
     }
@@ -196,6 +196,14 @@ const golem = [
   { Atributo: "Elemento", Valor: "Terra" },
 ];
 
+const quimera = [
+  { Atributo: "Vida", Valor: 788 },
+  { Atributo: "Ataque", Valor: 130 },
+  { Atributo: "Agilidade", Valor: 100 },
+  { Atributo: "Defesa", Valor: 70 },
+  { Atributo: "Elemento", Valor: `Agua` },
+];
+
 const necromante = [
   { Atributo: "Vida", Valor: 1540 },
   { Atributo: "Ataque", Valor: 2850 },
@@ -206,9 +214,9 @@ const necromante = [
 
 // ARROW FUNCTION PARA PAUSAR TEMPO DE EXECUÇÃO
 
-tempo = (ms) => {
-  var contar = new Date().getTime();
-  for (var i = 0; i < 5e6; i++) {
+const tempo = (ms) => {
+  let contar = new Date().getTime();
+  for (let i = 0; i < 5e6; i++) {
     if (new Date().getTime() - contar > ms) {
       break;
     }
@@ -240,7 +248,7 @@ table = (input) => {
 
 //ARROW FUNCTION PARA VALIDAÇÃO DA RESPOSTA DO USUARIO
 
-validacao = (x) => {
+const validacao = (x) => {
   while (x != `sim` && x != `s` && x != `nao` && x != `não` && x != `n`) {
     x = prompt(`Digite somente "sim" ou "não".`);
   }
@@ -273,7 +281,7 @@ while (true) {
   if (
     !isNaN(numeroDias) &&
     numeroDias > 0 &&
-    numeroDias % 1 == 0 &&
+    numeroDias % 1 === 0 &&
     numeroDias.length != 0
   ) {
     break;
@@ -303,8 +311,8 @@ Ficou se questionando: \n`
 
   // PRIMEIRA CONDIÇÃO DA HISTORIA QUE DETERMINA A DIREÇÃO DO PERSONAGEM.
 
-  if (irTreinar == `sim` || irTreinar == `s`) {
-    while (irTreinar == `sim` || irTreinar == `s`) {
+  if (irTreinar === `sim` || irTreinar === `s`) {
+    while (irTreinar === `sim` || irTreinar === `s`) {
       irTreinar = prompt(
         `Você pode continuar treinando se quiser, deseja continuar? `
       ).toLowerCase();
@@ -321,13 +329,13 @@ Ficou se questionando: \n`
 
     tempo();
 
-    let ajudarPasto = prompt(
+    const ajudarPasto = prompt(
       `Seu pai Thors, ja está com idade avançada e precisa de ajuda. Deseja ajudar seu pai? `
     ).toLowerCase();
 
     tempo();
 
-    if (ajudarPasto == `s` || ajudarPasto == `sim`) {
+    if (ajudarPasto === `s` || ajudarPasto === `sim`) {
       dadosPersonagem.energia -= 5;
       console.log(
         `\nPor ter ajudado seu pai a alimentar todo os animais e cuidar do pasto ficou um pouco cansado diminuindo sua energia para ${dadosPersonagem.energia}`
@@ -353,7 +361,7 @@ ${nomePersonagem} pegou sua espada e correu para ajuda-lá.`);
       //CONDIÇÃO PARA PRIMEIRA LUTA DO PERSONAGEM.
 
       if (
-        lobo[1]["Valor"] < dadosPersonagem.ataque &&
+        lobo[0]["Valor"] < dadosPersonagem.ataque &&
         dadosPersonagem.energia != 0
       ) {
         console.log(
@@ -369,11 +377,13 @@ ${nomePersonagem} pegou sua espada e correu para ajuda-lá.`);
         );
       }
     } else if (
-      ajudarPasto == `n` ||
-      ajudarPasto == `nao` ||
-      ajudarPasto == `não`
+      ajudarPasto === `n` ||
+      ajudarPasto === `nao` ||
+      ajudarPasto === `não`
     ) {
-      console.log(`\nRealmente ${nomePersonagem} não estava em um bom dia.`);
+      console.log(
+        `\nRealmente ${nomePersonagem} não estava em um bom dia. Ficou a manhã toda na cama.`
+      );
     }
     tempo();
 
@@ -396,7 +406,7 @@ de seu pai, e quando foi se despedir de sua mãe, ela entregou um amuleto para e
 
     //SEGUNDO CONDIÇÃO DA HISTORIA QUE DETERMINA A DIREÇÃO DO PERSONAGEM.
 
-    let caminho = prompt(
+    const caminho = prompt(
       `É uma longa estrada até a floresta, deseja pegar um atalho? [OBS] O atalho é mais rápido, porém não tão seguro: `
     ).toLowerCase();
 
@@ -404,7 +414,7 @@ de seu pai, e quando foi se despedir de sua mãe, ela entregou um amuleto para e
 
     tempo();
 
-    if (caminho == `sim` || caminho == `s`) {
+    if (caminho === `sim` || caminho === `s`) {
       dadosPersonagem.energia -= 10;
       console.log(`\n${nomePersonagem} acabou ficando com "${dadosPersonagem.energia}" de energia por ter que andar o caminho todo mesmo sendo o atalho.
 Mesmo sabendo que era perigoso e decidiu ir pelo atalho assim mesmo. ${nomePersonagem} acabou dando de frente com um Orc, que não deixou que passasse ou recuasse.`);
@@ -448,7 +458,7 @@ Com seu novo poder de invocação, terá que treinar mais para aprimorar suas ha
         tempo();
 
         console.log(
-          `Chegando em casa já pela noite, muito exausto. ${nomePersonagem} decide comer algo. `
+          `Chegando em casa já pela noite, muito exausto. ${nomePersonagem} decide comer algo.\n`
         );
 
         dadosPersonagem.recuperarEnergia();
@@ -463,6 +473,11 @@ Com seu novo poder de invocação, terá que treinar mais para aprimorar suas ha
         dadosPersonagem.energia != 0
       ) {
         dadosPersonagem.energia -= 35;
+
+        console.log(
+          `Você consegue derrotar o Orc fácilmente com seus atributos.`
+        );
+
         console.log(
           `Foram necessárias ${Math.ceil(
             (orc[0]["Valor"] + orc[3]["Valor"]) /
@@ -474,7 +489,7 @@ Com seu novo poder de invocação, terá que treinar mais para aprimorar suas ha
 
         dadosPersonagem.aumentarStatus();
       }
-    } else if (caminho == `nao` || caminho == `não` || caminho == `n`) {
+    } else if (caminho === `nao` || caminho === `não` || caminho === `n`) {
       dadosPersonagem.energia -= 25;
 
       console.log(
@@ -490,17 +505,18 @@ No meio do caminho ele encontra um jovem pedindo ajuda.\n`);
 
       //TERCEIRA CONDIÇÃO DA HISTORIA QUE DETERMINA A DIREÇÃO DO PERSONAGEM.
 
-      if (jovem == `sim` || jovem == `s`) {
+      if (jovem === `sim` || jovem === `s`) {
         console.log(
           `O jovem falou que a vila dele havia sido atacada por um dragão assustador, e estava acabando com as casas e matando as pessoas da vila.\n`
         );
 
-        dadosPersonagem.energia -= 20;
+        dadosPersonagem.energia -= 45;
 
         console.log(`Chegando na vila do jovem, que era do lado de Lorencia. ${nomePersonagem} avistou o dragão, porém os atributos do dragão eram muitos superiores
-ao dele então decidiu voltar para sua vila Lorencia para avisar os moradores. Acabou ficando com ${dadosPersonagem.energia} da energia. E ficou espantado com os atributos do dragão: `);
+ao dele então decidiu voltar para sua vila Lorencia para avisar os moradores. Acabou ficando com ${dadosPersonagem.energia} da energia por causa do longo caminho. 
+E ficou espantado com os atributos do dragão: `);
 
-        console.table(dragao);
+        table(dragao);
 
         console.log(
           `Ao chegar na sua vila, a mãe de ${nomePersonagem} lhe ensinou a invocar os espiritos. E assim ele fez.`
@@ -508,8 +524,55 @@ ao dele então decidiu voltar para sua vila Lorencia para avisar os moradores. A
 
         dadosPersonagem.poderElemental();
 
-        // ******************************************** PRECISO CONTINUAR A HISTORIA AQUI ******************************************** //
-      } else if (jovem == `nao` || jovem == `não` || jovem == `n`) {
+        console.log(`${nomePersonagem} já não tinha muito tempo pois não tinha muito tempo, já que o dragão estava prestes a atacar a vila.
+        De repende enquanto treinava apareceu uma Quimera no sul da vila atacando os moradores e ${nomePersonagem} corre pra lá com sua espada para enfrenta-lá.
+        Chegando mais perto ele conseguiu ver os atributos da Quimera: `);
+
+        table(quimera);
+
+        console.log(
+          `Para enfrentar a quimera os atributos de ataque de ${nomePersonagem} tem que ser mais alto que o ataque e a agilidade da Quimera. `
+        );
+
+        if (
+          dadosPersonagem.ataque >
+          quimera[1]["Valor"] + quimera[2]["Valor"]
+        ) {
+          console.log(
+            `Com seu poder elemental ${nomePersonagem} preciso aplicar ${
+              quimera[0]["Valor"] / dadosPersonagem.ataque
+            } para mater a quimera. `
+          );
+        } else if (
+          dadosPersonagem.ataque <
+          quimera[1]["Valor"] + quimera[2]["Valor"]
+        ) {
+          console.log(
+            `${nomePersonagem} não consegue derrotar a Quimera com esses atributos atuais.`
+          );
+          tempo();
+
+          console.log(
+            `Logo ápos ${nomePersonagem} avista o dragão chegando em sua vila. Agora com dois monstros atacando sua vila. O que fazer?\n
+Sua mão o chama e fala pra ele pegar um velho pergaminho no porão de sua casa.\n`
+          );
+
+          const lerPergaminho = prompt(`Deseja ler o pergaminho? `);
+
+          validacao(lerPergaminho);
+
+          if (lerPergaminho === `sim` || lerPergaminho === `s`) {
+            console.log(`Ao abrir o pergaminho, ele lê algumas palavras estranhas e de repente um vento forte envolto dos elementos existentes.
+${nomePersonagem} é jogado pra trás e se choca com a parede e aqueles elementos ficaram rodando na frente dele.`);
+            console.log(`O elemento fogo te abençoou: `);
+
+            poderElementalFuria(elementoEscolhido === `FOGO`);
+            poderElementalFuria(elementoEscolhido === `AGUA`);
+            poderElementalFuria(elementoEscolhido === `TERRA`);
+            poderElementalFuria(elementoEscolhido === `AR`);
+          }
+        }
+      } else if (jovem === `nao` || jovem === `não` || jovem === `n`) {
         tempo();
         console.log(`\n${nomePersonagem} fica espantado ao chegar em Lorencia, pois vê um dragão atacando sua vila. Rapidamente saca sua espada, e corre para 
 enfrentar o dragão, porém, os atributos do dragão eram muito altos.\n`);
@@ -521,8 +584,8 @@ enfrentar o dragão, porém, os atributos do dragão eram muito altos.\n`);
         ).toLowerCase();
         validacao(enfrentarDragao);
         if (
-          enfrentarDragao == `sim` ||
-          (enfrentarDragao == `s` && dadosPersonagem.energia != 0)
+          enfrentarDragao === `sim` ||
+          (enfrentarDragao === `s` && dadosPersonagem.energia != 0)
         ) {
           let resultadoLuta1 =
             (dadosPersonagem.vida + dadosPersonagem.defesa) %
