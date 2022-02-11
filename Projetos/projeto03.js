@@ -10,9 +10,33 @@ Albion Flame é um reino mágico cheio de criaturas e varios caminhos para ser e
 // PRINCIPAIS VARIAVEIS E OBJETOs DOs STATUS DOS PERSONAGENS DA HISTORIA
 
 const nomePersonagem = prompt(`Digite o nome do personagem da história: `);
-const idadePersonagem = +prompt(`Digite a idade do seu personagem: `);
+let idadePersonagem;
+while (true) {
+  idadePersonagem = +prompt(`Digite a idade do seu personagem: `);
+  if (
+    !isNaN(idadePersonagem) &&
+    idadePersonagem > 0 &&
+    idadePersonagem % 1 == 0 &&
+    idadePersonagem.length != 0
+  ) {
+    break;
+  }
+}
+
 let elementoEscolhido;
-const numeroDias = +prompt(`Quantos dias jogar? `);
+
+let numeroDias;
+while (true) {
+  numeroDias = +prompt(`Quantos dias jogar? `);
+  if (
+    !isNaN(numeroDias) &&
+    numeroDias > 0 &&
+    numeroDias % 1 == 0 &&
+    numeroDias.length != 0
+  ) {
+    break;
+  }
+}
 
 // OBJETO PRINCIPAL COM TODAS AS VARIAÇÕES DE STATUS DO PERSONAGEM.
 
@@ -523,8 +547,8 @@ E ficou espantado com os atributos do dragão: `);
         dadosPersonagem.poderElemental();
 
         console.log(`${nomePersonagem} já não tinha muito tempo pois não tinha muito tempo, já que o dragão estava prestes a atacar a vila.
-        De repende enquanto treinava apareceu uma Quimera no sul da vila atacando os moradores e ${nomePersonagem} corre pra lá com sua espada para enfrenta-lá.
-        Chegando mais perto ele conseguiu ver os atributos da Quimera: `);
+De repende enquanto treinava apareceu uma Quimera no sul da vila atacando os moradores e ${nomePersonagem} corre pra lá com sua espada para enfrenta-lá.
+Chegando mais perto ele conseguiu ver os atributos da Quimera: `);
 
         table(quimera);
 
@@ -540,6 +564,10 @@ E ficou espantado com os atributos do dragão: `);
             `Com seu poder elemental ${nomePersonagem} preciso aplicar ${
               quimera[0]["Valor"] / dadosPersonagem.ataque
             } para mater a quimera. `
+          );
+
+          console.log(
+            `Com a derrota da Quimera, Lorencia voltou a viver em paz por um tempo, o dragão tomou outro rumo e ${nomePersonagem}, continua treinando para o dia que ameaça aparecer.`
           );
         } else if (
           dadosPersonagem.ataque <
@@ -566,9 +594,13 @@ ${nomePersonagem} é jogado pra trás e se choca com a parede e aqueles elemento
               `Os elementos o abençoaram, e deixaram ele escolher três dos elementos diferentes, ou potencializar o mesmo. `
             );
 
-            for (i = 0; (i = 3); i++) {
-              dadosPersonagem.poderElementalFuria;
+            for (i = 0; i <= 3; i++) {
+              dadosPersonagem.poderElementalFuria();
             }
+
+            console.log(
+              `Agora, as condições para enfrentar os dois será o ataque e agilidade de ${nomePersonagem} contra todos os atributos somados do Dragão e da Quimera`
+            );
           }
         }
       } else if (jovem === `nao` || jovem === `não` || jovem === `n`) {
