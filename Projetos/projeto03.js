@@ -300,8 +300,6 @@ Ficou se questionando: \n`
   );
   tempo();
 
-  // ONDE O PERSONAGEM VAI TOMAR O PRIMEIRO RUMO DA HISTORIA
-
   let irTreinar = prompt(`Será que vou treinar hoje? `).toLowerCase();
   tempo();
   dadosPersonagem.aumentarStatus(irTreinar);
@@ -564,12 +562,13 @@ Sua mão o chama e fala pra ele pegar um velho pergaminho no porão de sua casa.
           if (lerPergaminho === `sim` || lerPergaminho === `s`) {
             console.log(`Ao abrir o pergaminho, ele lê algumas palavras estranhas e de repente um vento forte envolto dos elementos existentes.
 ${nomePersonagem} é jogado pra trás e se choca com a parede e aqueles elementos ficaram rodando na frente dele.`);
-            console.log(`O elemento fogo te abençoou: `);
+            console.log(
+              `Os elementos o abençoaram, e deixaram ele escolher três dos elementos diferentes, ou potencializar o mesmo. `
+            );
 
-            poderElementalFuria(elementoEscolhido === `FOGO`);
-            poderElementalFuria(elementoEscolhido === `AGUA`);
-            poderElementalFuria(elementoEscolhido === `TERRA`);
-            poderElementalFuria(elementoEscolhido === `AR`);
+            for (i = 0; (i = 3); i++) {
+              dadosPersonagem.poderElementalFuria;
+            }
           }
         }
       } else if (jovem === `nao` || jovem === `não` || jovem === `n`) {
