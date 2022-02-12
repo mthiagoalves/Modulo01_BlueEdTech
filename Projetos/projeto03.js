@@ -674,6 +674,55 @@ ${nomePersonagem} é jogado pra trás e se choca com a parede e aqueles elemento
             console.log(
               `Agora, as condições para enfrentar os dois será o ataque e agilidade de ${nomePersonagem} contra todos os atributos somados do Dragão e da Quimera`
             );
+
+            if (
+              dadosPersonagem.ataque + dadosPersonagem.agilidade >
+              dragao[1]["Valor"] + dragao[2]["Valor"]
+            ) {
+              console.log(
+                `O atributos de ${nomePersonagem} somados ficaram em: ${
+                  dadosPersonagem.ataque + dadosPersonagem.agilidade
+                }\n`
+              );
+
+              console.log(
+                `Os atributos do Dragão e da Quimera ficaram: ${
+                  dragao[0]["Valor"] +
+                  dragao[1]["Valor"] +
+                  dragao[2]["Valor"] +
+                  dragao[3]["Valor"] +
+                  quimera[0]["Valor"] +
+                  quimera[1]["Valor"] +
+                  quimera[2]["Valor"] +
+                  quimera[3]["Valor"]
+                } `
+              );
+
+              console.log(
+                `Mesmo com os atributos superiores. ${nomePersonagem} teve muita dificuldades para derrotar os dois juntos, e precisou de ${
+                  (dadosPersonagem.ataque + dadosPersonagem.agilidade) /
+                  (dragao[0]["Valor"] +
+                    dragao[1]["Valor"] +
+                    dragao[2]["Valor"] +
+                    dragao[3]["Valor"] +
+                    quimera[0]["Valor"] +
+                    quimera[1]["Valor"] +
+                    quimera[2]["Valor"] +
+                    quimera[3]["Valor"])
+                } envestidas para conseguir acabar com os dois.`
+              );
+
+              console.log(
+                `Depois da luta, ${nomePersonagem} ficou esgotado, e acabou desmaiando, porém, como grande herói...`
+              );
+            }
+          } else {
+            console.log(
+              `Com o ataque dos mostros, a vila não tinha ninguem que pudesse para-los, todos da vila se foram, enquanto ${nomePersonagem} estava no porão escondido.`
+            );
+            console.log(
+              `Quem sabe, ele decida se vingar pela sua vila outro dia...`
+            );
           }
         }
       } else if (jovem === `nao` || jovem === `não` || jovem === `n`) {
