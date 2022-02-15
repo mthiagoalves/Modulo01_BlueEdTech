@@ -384,7 +384,6 @@ Energia: ${dadosPersonagem.energia}
 tempo();
 
 //ENTRADA TEMPORAL DO JOGO.
-// console.clear();
 
 for (i = 0; i < numeroDias; i++) {
   console.log(`${i + 1}º dia em Albion Flame. `);
@@ -422,7 +421,8 @@ Ficou se questionando: \n`
       irTreinar = prompt(
         `Você pode continuar treinando se quiser, deseja continuar? `
       ).toLowerCase();
-
+      irTreinar = validacao(irTreinar);
+      console.clear();
       tempo();
       dadosPersonagem.aumentarStatus(irTreinar);
     }
@@ -714,7 +714,7 @@ Então se despediu de seu pai e ao se despedir de sua mãe, ela entregou a ele u
 
                 dadosPersonagem.poderElemental();
 
-                console.log(`\n${nomePersonagem} já não tinha muito tempo pois não tinha muito tempo, já que o dragão estava prestes a atacar a vila.
+                console.log(`\n${nomePersonagem} já não tinha muito tempo pois, já que o dragão estava prestes a atacar a vila.
 De repende enquanto treinava apareceu uma Quimera no sul da vila atacando os moradores e ${nomePersonagem} corre pra lá com sua espada para enfrenta-lá.
 Chegando mais perto ele conseguiu ver os atributos da Quimera: `);
 
@@ -729,9 +729,9 @@ Chegando mais perto ele conseguiu ver os atributos da Quimera: `);
                   quimera[1]["Valor"] + quimera[2]["Valor"]
                 ) {
                   console.log(
-                    `Com seu poder elemental ${nomePersonagem} preciso aplicar ${
+                    `Com seu poder elemental ${nomePersonagem} preciso aplicar ${Math.ceil(
                       quimera[0]["Valor"] / dadosPersonagem.ataque
-                    } para mater a quimera. `
+                    )} para mater a quimera. `
                   );
                   tempo();
 
