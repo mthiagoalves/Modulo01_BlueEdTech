@@ -198,7 +198,7 @@ const dadosPersonagem = {
       this.agilidade += 150;
       this.defesa += 45;
       tempo();
-      console.log(`O elemento agua é focado na agilidade. Seus atributos aumentaram para: 
+      console.log(`O elemento ar é focado na agilidade. Seus atributos aumentaram para: 
     \nVida: ${this.vida} (+50)\nAtaque: ${this.ataque} (+80)\nAgilidade: ${this.agilidade} (+150)\nDefesa: ${this.defesa} (+45)`);
     }
   },
@@ -1108,10 +1108,11 @@ enfrentar o dragão. No entanto, os atributos do dragão eram muito maiores.\n`)
           );
           tempo();
         }
+      } else {
+        console.log(
+          `Não tinha muito o que fazer, voltou para casa porém pensando muito no que o Elfo tinha falado pra ele.\nTalvez amanhã ${nomePersonagem} volte e queira ativar o amuleto...\n`
+        );
       }
-      console.log(
-        `Não tinha muito o que fazer, voltou para casa porém pensando muito no que o Elfo tinha falado pra ele.\nTalvez amanhã ${nomePersonagem} volte e queira ativar o amuleto...\n`
-      );
     } else {
       console.log(
         `${nomePersonagem} não deu bola ao Elfo, e foi direto para casa afim de chegar a tempo para a janta.\n`
