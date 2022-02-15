@@ -56,7 +56,7 @@ let semEnergia = () => {
 };
 
 console.log(`Bem-vindo a Albion Flame, um jogo onde você pode criar um personagem e determinar o dia do personagem no reino. O jogo consiste em determinar as escolhas
-do personagem. Escolha com sabedoria e explore varios caminhos.\n`);
+do personagem. Escolha com sabedoria e explore varios caminhos.\nLembre-se seus status de um dia pro outro são acumulativos.\n`);
 
 tempo();
 console.log(`.`);
@@ -215,41 +215,41 @@ const dadosPersonagem = {
     console.log(`\n${elementoEscolhido}!!! Gritou ${nomePersonagem}.\n`);
 
     if (elementoEscolhido === `FOGO`) {
-      this.vida += 4899;
-      this.ataque += 12450;
-      this.agilidade += 8754;
-      this.defesa += 4205;
+      this.vida += 2664;
+      this.ataque += 6544;
+      this.agilidade += 4233;
+      this.defesa += 2155;
       tempo();
       console.log(`Desceu um bola de fogo do alto e envolveu ${nomePersonagem}. Seus atributos aumentaram para: 
-  Vida: ${this.vida} (+4899)\nAtaque: ${this.ataque} (+12450)
-  Agilidade: ${this.agilidade} (+8754)\nDefesa${this.defesa} (+4205)`);
+  Vida: ${this.vida} (+2664)\nAtaque: ${this.ataque} (+6544)
+  Agilidade: ${this.agilidade} (+4233)\nDefesa${this.defesa} (+2155)`);
     } else if (elementoEscolhido === `AGUA`) {
-      this.vida += 12450;
-      this.ataque += 4899;
-      this.agilidade += 4205;
-      this.defesa += 8754;
+      this.vida += 6544;
+      this.ataque += 2664;
+      this.agilidade += 2155;
+      this.defesa += 4233;
       tempo();
       console.log(`A chuva aumentou dratiscamente cercando ${nomePersonagem}. Seus atributos aumentaram para: 
-  Vida: ${this.vida} (+12450)\nAtaque: ${this.ataque} (+4899)
-  Agilidade: ${this.agilidade}(+4205)\nDefesa: ${this.defesa} (+8754)`);
+  Vida: ${this.vida} (+6544)\nAtaque: ${this.ataque} (+2664)
+  Agilidade: ${this.agilidade}(+2155)\nDefesa: ${this.defesa} (+4233)`);
     } else if (elementoEscolhido === `TERRA`) {
-      this.vida += 8754;
-      this.ataque += 4205;
-      this.agilidade += 4899;
-      this.defesa += 12450;
+      this.vida += 4233;
+      this.ataque += 2155;
+      this.agilidade += 2664;
+      this.defesa += 6544;
       tempo();
       console.log(`A terra começou a se agitar em volta de ${nomePersonagem}. Seus atributos aumentaram para: 
-  Vida: ${this.vida} (+8754)\nAtaque: ${this.ataque} (+4205)
-  Agilidade: ${this.agilidade} (+4899)\nDefesa: ${this.defesa} (+12450)`);
+  Vida: ${this.vida} (+4233)\nAtaque: ${this.ataque} (+2155)
+  Agilidade: ${this.agilidade} (+2664)\nDefesa: ${this.defesa} (+6544)`);
     } else if (elementoEscolhido === `AR`) {
-      this.vida += 4899;
-      this.ataque += 8754;
-      this.agilidade += 12450;
-      this.defesa += 4205;
+      this.vida += 2664;
+      this.ataque += 4233;
+      this.agilidade += 6544;
+      this.defesa += 2155;
       tempo();
       console.log(`Um furacão se formou em volta de ${nomePersonagem}. Seus atributos aumentaram para: 
-  Vida: ${this.vida} (+4899)\nAtaque: ${this.ataque} (+8754)
-  Agilidade: ${this.agilidade} (+12450)\nDefesa: ${this.defesa} (+4205)`);
+  Vida: ${this.vida} (+2664)\nAtaque: ${this.ataque} (+4233)
+  Agilidade: ${this.agilidade} (+6544)\nDefesa: ${this.defesa} (+2155)`);
     }
   },
 
