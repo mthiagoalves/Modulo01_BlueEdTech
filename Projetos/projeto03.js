@@ -173,7 +173,7 @@ const dadosPersonagem = {
       this.ataque += 150;
       this.agilidade += 84;
       this.defesa += 50;
-      tempo();
+      tempo(2200);
       console.log(`O elemento fogo é focado no ataque. Seus atributos aumentaram para: 
     \nVida: ${this.vida} (+70)\nAtaque: ${this.ataque} (+150)\nAgilidade: ${this.agilidade} (+84)\nDefesa${this.defesa} (+50)`);
     } else if (elementoEscolhido === `agua`) {
@@ -181,7 +181,7 @@ const dadosPersonagem = {
       this.ataque += 53;
       this.agilidade += 50;
       this.defesa += 88;
-      tempo();
+      tempo(2200);
       console.log(`O elemento agua é focado na vida. Seus atributos aumentaram para: 
     \nVida: ${this.vida} (+150)\nAtaque: ${this.ataque} (+53)\nAgilidade: ${this.agilidade}(+50)\nDefesa: ${this.defesa} (+88)`);
     } else if (elementoEscolhido === `terra`) {
@@ -189,7 +189,7 @@ const dadosPersonagem = {
       this.ataque += 45;
       this.agilidade += 50;
       this.defesa += 150;
-      tempo();
+      tempo(2200);
       console.log(`O elemento terra é focado na defesa. Seus atributos aumentaram para: 
     \nVida: ${this.vida} (+87)\nAtaque: ${this.ataque} (+45)\nAgilidade: ${this.agilidade} (+50)\nDefesa: ${this.defesa} (+150)`);
     } else if (elementoEscolhido === `ar`) {
@@ -197,7 +197,7 @@ const dadosPersonagem = {
       this.ataque += 80;
       this.agilidade += 150;
       this.defesa += 45;
-      tempo();
+      tempo(2200);
       console.log(`O elemento agua é focado na agilidade. Seus atributos aumentaram para: 
     \nVida: ${this.vida} (+50)\nAtaque: ${this.ataque} (+80)\nAgilidade: ${this.agilidade} (+150)\nDefesa: ${this.defesa} (+45)`);
     }
@@ -219,7 +219,7 @@ const dadosPersonagem = {
       this.ataque += 6544;
       this.agilidade += 4233;
       this.defesa += 2155;
-      tempo();
+      tempo(2200);
       console.log(`Desceu um bola de fogo do alto e envolveu ${nomePersonagem}. Seus atributos aumentaram para: 
   Vida: ${this.vida} (+2664)\nAtaque: ${this.ataque} (+6544)
   Agilidade: ${this.agilidade} (+4233)\nDefesa${this.defesa} (+2155)`);
@@ -228,7 +228,7 @@ const dadosPersonagem = {
       this.ataque += 2664;
       this.agilidade += 2155;
       this.defesa += 4233;
-      tempo();
+      tempo(2200);
       console.log(`A chuva aumentou dratiscamente cercando ${nomePersonagem}. Seus atributos aumentaram para: 
   Vida: ${this.vida} (+6544)\nAtaque: ${this.ataque} (+2664)
   Agilidade: ${this.agilidade}(+2155)\nDefesa: ${this.defesa} (+4233)`);
@@ -237,7 +237,7 @@ const dadosPersonagem = {
       this.ataque += 2155;
       this.agilidade += 2664;
       this.defesa += 6544;
-      tempo();
+      tempo(2200);
       console.log(`A terra começou a se agitar em volta de ${nomePersonagem}. Seus atributos aumentaram para: 
   Vida: ${this.vida} (+4233)\nAtaque: ${this.ataque} (+2155)
   Agilidade: ${this.agilidade} (+2664)\nDefesa: ${this.defesa} (+6544)`);
@@ -246,7 +246,7 @@ const dadosPersonagem = {
       this.ataque += 4233;
       this.agilidade += 6544;
       this.defesa += 2155;
-      tempo();
+      tempo(2200);
       console.log(`Um furacão se formou em volta de ${nomePersonagem}. Seus atributos aumentaram para: 
   Vida: ${this.vida} (+2664)\nAtaque: ${this.ataque} (+4233)
   Agilidade: ${this.agilidade} (+6544)\nDefesa: ${this.defesa} (+2155)`);
@@ -428,7 +428,7 @@ Ficou se questionando: \n`
       console.log(
         `\nApós o treino, ${nomePersonagem} volou para casa pois precisava ajudar sua família.`
       );
-      tempo();
+      tempo(2200);
 
       console.log(
         `\nSeu pai Thors já está com idade avançada e tem dificuldades em realizar as tarefas no pasto.\n`
@@ -996,7 +996,7 @@ enfrentar o dragão. No entanto, os atributos do dragão eram muito maiores.\n`)
     console.log(
       `Como ${nomePersonagem} não quis treinar, ele decidiu sair para explorar uma caverna ao sul da vila.`
     );
-    tempo2200();
+    tempo(2200);
     console.log(
       `Por más línguas, lá vivia um Golem. Porém ninguém nunca havia o visto.`
     );
@@ -1261,7 +1261,7 @@ enfrentar o dragão. No entanto, os atributos do dragão eram muito maiores.\n`)
         console.log(
           `Vendo toda aquela situação e sem saber o que fazer, mais uma vez ${nomePersonagem} escuta a mesma voz: \n`
         );
-        tempo();
+        tempo(2200);
 
         dadosPersonagem.poderElementalFuria();
 
