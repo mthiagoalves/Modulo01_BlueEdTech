@@ -74,6 +74,7 @@ Albion Flame é um reino mágico cheio de criaturas e varios caminhos para ser e
 );
 
 // PRINCIPAIS VARIAVEIS E OBJETOs DOS STATUS DOS PERSONAGENS DA HISTORIA
+
 let nomePersonagem;
 
 nomePersonagem = prompt(
@@ -383,7 +384,6 @@ Energia: ${dadosPersonagem.energia}
 tempo(5000);
 
 //ENTRADA TEMPORAL DO JOGO.
-// console.clear();
 
 for (i = 0; i < numeroDias; i++) {
   console.log(`${i + 1}º dia em Albion Flame. `);
@@ -396,8 +396,6 @@ for (i = 0; i < numeroDias; i++) {
     `\nTodo dia pela manhã, ${nomePersonagem} acorda cedo para treinar esgrima com seu professor, mas está um pouco desmotivado por algum motivo.
 Ficou se questionando: \n`
   );
-
-  tempo2200();
 
   let irTreinar = prompt(`Será que vou treinar hoje? `).toLowerCase();
   tempo(2200);
@@ -441,7 +439,7 @@ Ficou se questionando: \n`
       let ajudarPasto = prompt(`Deseja ajudar seu pai? `).toLowerCase();
 
       ajudarPasto = validacao(ajudarPasto);
-
+      console.clear();
       tempo(2200);
 
       if (ajudarPasto === `s` || ajudarPasto === `sim`) {
@@ -469,7 +467,7 @@ Ficou se questionando: \n`
 
         tempo(4000);
 
-        //CONDIÇÃO PARA PRIMEIRA LUTA DO PERSONAGEM.
+        //CONDIÇÃO PARA LUTA DO PERSONAGEM.
 
         if (
           lobo[0]["Valor"] < dadosPersonagem.ataque &&
@@ -502,6 +500,7 @@ Ficou se questionando: \n`
       console.log(`${nomePersonagem} precisa escolher o cardápio.\n`);
 
       dadosPersonagem.recuperarEnergia();
+
       console.clear();
 
       console.log(
@@ -563,6 +562,8 @@ Então se despediu de seu pai e ao se despedir de sua mãe, ela entregou a ele u
           console.log(
             `\nComo não havia escapatória, a única opção de ${nomePersonagem} foi enfrentar o monstro. `
           );
+
+          //CONDIÇÃO PARA LUTA DO PERSONAGEM
 
           if (dadosPersonagem.energia >= 10) {
             if (
@@ -783,6 +784,7 @@ Sua mão o chama e fala pra ele pegar um velho pergaminho no porão de sua casa.
                   let lerPergaminho = prompt(`Deseja ler o pergaminho? `);
 
                   lerPergaminho = validacao(lerPergaminho);
+                  console.clear();
 
                   if (lerPergaminho === `sim` || lerPergaminho === `s`) {
                     console.log(`Ao abrir o pergaminho, ele lê algumas palavras estranhas e de repente um vento forte envolto dos elementos existentes.
@@ -880,6 +882,7 @@ enfrentar o dragão. No entanto, os atributos do dragão eram muito maiores.\n`)
                 `Deseja enfrentar o dragão mesmo assim? `
               ).toLowerCase();
               enfrentarDragao = validacao(enfrentarDragao);
+              console.clear();
               if (
                 enfrentarDragao === `sim` ||
                 (enfrentarDragao === `s` && dadosPersonagem.energia != 0)
@@ -1085,8 +1088,9 @@ enfrentar o dragão. No entanto, os atributos do dragão eram muito maiores.\n`)
         `Deseja ativar o amuleto para dominar os elementos? `
       ).toLowerCase();
       ativarAmuleto = validacao(ativarAmuleto);
-      tempo(2200);
       console.clear();
+      tempo(2200);
+
       if (ativarAmuleto == `sim` || ativarAmuleto == `s`) {
         console.log(
           `\nO Elfo ativou o amuleto com um simples toque ele começou a brilhar. E então, dele saiu um espirito elemental. \n`
@@ -1213,7 +1217,7 @@ enfrentar o dragão. No entanto, os atributos do dragão eram muito maiores.\n`)
       );
 
       enfrentarNecro = validacao(enfrentarNecro);
-
+      console.clear();
       dadosPersonagem.energia -= 40;
 
       if (
