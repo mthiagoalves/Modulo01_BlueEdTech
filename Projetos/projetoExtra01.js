@@ -2,11 +2,21 @@ const prompt = require("prompt-sync")();
 const { Console } = require("console");
 const { Transform } = require("stream");
 
+//PRINCIPAIS VARIAVEIS
+
+const userName;
+const userAge;
+const cpf;
+let userVote;
+let exit;
 let vote1 = 0;
 let vote2 = 0;
 let vote3 = 0;
 let voteNull = 0;
 let voteBlank = 0;
+let sum;
+let rest;
+let confirm;
 
 //ARROW FUNCTION PARA CONTAGEM DOS VOTOS E EXIBIÇÃO DO RESULTADO
 displayResult = () => {
@@ -46,7 +56,7 @@ displayResult = () => {
 //ARROW FUNCTION PARA CONTAR TEMPO DENTRO DO PROGRAMA
 time = (ms) => {
   let contar = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
+  for (let i = 0; i < 1e7; i++) {
     if (new Date().getTime() - contar > ms) {
       break;
     }
@@ -78,7 +88,7 @@ table = (input) => {
 //ARROW FUNCTION PARA VALIDAÇÃO SE O USUARIO ESTÁ APTO PARA VOTAÇÃO.
 ageValidate = (age) => {
   if (!isNaN(age) && age >= 16 && age < 18 && age % 1 == 0 && age.length != 0) {
-    console.log(`${age} você tem ${age} anos, seu voto é opcional.`);
+    console.log(`\n${userName} você tem ${age} anos, seu voto é opcional.\n`);
   } else if (
     !isNaN(age) &&
     age >= 18 &&
@@ -86,14 +96,15 @@ ageValidate = (age) => {
     age % 1 == 0 &&
     age.length != 0
   ) {
-    console.log(`${age} você tem ${age} anos, seu voto é obrigatório.`);
+    console.log(
+      `\n${userName} você tem ${age} anos, seu voto é obrigatório.\n`
+    );
   } else if (!isNaN(age) && age >= 70 && age % 1 == 0 && age.length != 0) {
-    console.log(`${age} você tem ${age} anos, seu voto é opcional.`);
+    console.log(`\n${userName} você tem ${age} anos, seu voto é opcional.\n`);
   } else {
-    console.log(`Você não está apto para votação. `);
+    console.log(`\nVocê não está apto para votação.\n`);
   }
   return age;
-  console.clear();
 };
 
 //ARROW FUNCTION PARA CONTAGEM DOS VOTOS
@@ -124,6 +135,27 @@ voteCount = (userVote) => {
   }
 };
 
+//ARROW FUNCTION PARA VALIDAÇÃO DO CPF DO USUARIO.
+
+testCpf = (cpf) => {
+  sum = 0;
+  if (cpf == "00000000000") return `CPF invalido`;
+
+  for (i = 1; i <= 9; i++) sum = sum + cpf.substring(i - 1, i) * (11 - i);
+  rest = (sum * 10) % 11;
+
+  if (rest == 10 || rest == 11) rest = 0;
+  if (rest != cpf.substring(9, 10)) return `CPF invalido`;
+
+  sum = 0;
+  for (i = 1; i <= 10; i++) sum = sum + cpf.substring(i - 1, i) * (12 - i);
+  rest = (sum * 10) % 11;
+
+  if (rest == 10 || rest == 11) rest = 0;
+  if (rest != cpf.substring(10, 11)) return `CPF invalido`;
+  return `CPF validado`;
+};
+
 //ARRAY COM AS ESCOLHAS DO USUARIO.
 const candidates = [
   { Opção: 1, Candidato: "Camila" },
@@ -133,8 +165,26 @@ const candidates = [
   { Opção: 5, Candidato: "Voto em Branco" },
 ];
 
+//*************************************** INICIO ***************************************
+
+//ENTRADA DO CPF DO USUARIO VALIDANDO COM A ARROW FUNCTION
+do {
+  cpf = prompt(`Digite seu CPF: `);
+  console.log(`Consultando CPF. Aguarde.`);
+  time(1000);
+  console.log(`.`);
+  time(1500);
+  console.log(`.`);
+  time(1500);
+  console.log(`.`);
+  time(1500);
+  console.log(testCpf(cpf));
+  time(1700);
+  console.clear();
+} while (testCpf(cpf) == `CPF invalido`);
+
 //ENTRADA E VALIDAÇÃO DO NOME DO USUARIO
-let userName = prompt(`Digite seu nome: `);
+userName = prompt(`Digite seu nome: `);
 while (!isNaN(userName)) {
   console.clear();
   console.log(`!!!ATENÇÃO!!!`);
@@ -143,11 +193,7 @@ while (!isNaN(userName)) {
 }
 
 //ENTRADA E VALIDAÇÃO DO IDADE DO USUARIO
-let userAge;
 while (true) {
-  console.log(
-    `Você precisa ter 16 anos ou mais, para estar apto para votação.`
-  );
   userAge = +prompt(`Digite sua idade:  `);
   if (
     !isNaN(userAge) &&
@@ -157,32 +203,48 @@ while (true) {
   ) {
     break;
   }
+  console.clear();
+  console.log(`Digite uma idade válida.`);
 }
 
+// ENTRADA E VALIDAÇÃO DA IDADE DO USUARIO
 ageValidate(userAge);
 
-console.log(`As opções de voto são: `);
+if (userAge > 15) {
+  
+  if (userAge < 18 || userAge > 70){
+    confirm = prompt(`Seu voto é opcional, deseja continuar? `).toLowerCase
 
-table(candidates);
+    if(confirm == `sim` || exit == `s`){
 
-let userVote;
+  console.log(`As opções de voto são: `);
 
-let exit;
+  table(candidates);
 
-while (true) {
-  userVote = +prompt(`Digite seu voto de acordo com a opção desejada: `);
+  //CONTAGEM E VALIDAÇÃO DOS VOTOS
+  while (true) {
+    userVote = +prompt(`Digite seu voto de acordo com a opção desejada: `);
 
-  voteCount(userVote);
+    voteCount(userVote);
 
-  console.log();
+    console.log();
 
-  exit = prompt(`Deseja continuar a votação? `);
+    //CONDIÇÃO PARA CONTINUAR A VOTAÇÃO
+    exit = prompt(`Deseja continuar a votação? `).toLowerCase;
 
-  if (exit == `não` || exit == `n` || exit == `nao`) {
-    break;
+    if (exit == `não` || exit == `n` || exit == `nao`) {
+    }
     console.clear();
+    break;
   }
-  console.clear();
+
+  displayResult();
 }
 
-displayResult();
+//CASO O USUARIO SEJA MENOR QUE 16 ANOS. AUTOMÁTICAMENTE REPROVA-O.
+else {
+  console.log(`Volte quando sua idade for maior ou igual 16 para votar.`);
+}
+console.log(`Obrigado por participar da eleição.`)
+}
+}
