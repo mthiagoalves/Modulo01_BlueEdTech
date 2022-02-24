@@ -210,12 +210,13 @@ while (true) {
 ageValidate(userAge);
 
 if (userAge > 15) {
+  
+  if (userAge > 15)
   console.log(`As opções de voto são: `);
 
   table(candidates);
 
   //CONTAGEM E VALIDAÇÃO DOS VOTOS
-
   while (true) {
     userVote = +prompt(`Digite seu voto de acordo com a opção desejada: `);
 
@@ -224,7 +225,6 @@ if (userAge > 15) {
     console.log();
 
     //CONDIÇÃO PARA CONTINUAR A VOTAÇÃO
-
     exit = prompt(`Deseja continuar a votação? `).toLowerCase;
 
     if (exit == `não` || exit == `n` || exit == `nao`) {
