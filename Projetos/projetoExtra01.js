@@ -4,10 +4,11 @@ const { Transform } = require("stream");
 
 //PRINCIPAIS VARIAVEIS
 
+const userName;
+const userAge;
+const cpf;
 let userVote;
 let exit;
-let userName;
-let userAge;
 let vote1 = 0;
 let vote2 = 0;
 let vote3 = 0;
@@ -15,7 +16,7 @@ let voteNull = 0;
 let voteBlank = 0;
 let sum;
 let rest;
-let cpf;
+let confirm;
 
 //ARROW FUNCTION PARA CONTAGEM DOS VOTOS E EXIBIÇÃO DO RESULTADO
 displayResult = () => {
@@ -211,7 +212,11 @@ ageValidate(userAge);
 
 if (userAge > 15) {
   
-  if (userAge > 15)
+  if (userAge < 18 || userAge > 70){
+    confirm = prompt(`Seu voto é opcional, deseja continuar? `).toLowerCase
+
+    if(confirm == `sim` || exit == `s`){
+
   console.log(`As opções de voto são: `);
 
   table(candidates);
@@ -239,4 +244,7 @@ if (userAge > 15) {
 //CASO O USUARIO SEJA MENOR QUE 16 ANOS. AUTOMÁTICAMENTE REPROVA-O.
 else {
   console.log(`Volte quando sua idade for maior ou igual 16 para votar.`);
+}
+console.log(`Obrigado por participar da eleição.`)
+}
 }
