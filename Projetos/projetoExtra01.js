@@ -215,10 +215,12 @@ if ((userAge > 15 && userAge < 18) || userAge > 70) {
   if (confirm == `sim` || exit == `s`) {
     console.log(`As opções de voto são: `);
 
-    table(candidates);
+    // table(candidates);
 
     //CONTAGEM E VALIDAÇÃO DOS VOTOS
     do {
+      table(candidates);
+
       userVote = +prompt(`Digite seu voto de acordo com a opção desejada: `);
 
       voteCount(userVote);
