@@ -11,35 +11,35 @@ let voteBlank = 0;
 //ARROW FUNCTION PARA CONTAGEM DOS VOTOS E EXIBIÇÃO DO RESULTADO
 displayResult = () => {
   console.log(
-    `O candidato \x1b[33m${candidates[0]["Candidato"]}\x1b[0m teve ${vote1} votos.`
+    `\nO candidato \x1b[33m${candidates[0]["Candidato"]}\x1b[0m teve \x1b[31m${vote1}\x1b[0m votos.`
   );
   console.log(
-    `O candidato \x1b[32m${candidates[1]["Candidato"]}\x1b[0m teve ${vote2} votos.`
+    `O candidato \x1b[32m${candidates[1]["Candidato"]}\x1b[0m teve \x1b[31m${vote2}\x1b[0m votos.`
   );
   console.log(
-    `O candidato \x1b[34m${candidates[2]["Candidato"]}\x1b[0m teve ${vote3} votos.`
+    `O candidato \x1b[34m${candidates[2]["Candidato"]}\x1b[0m teve \x1b[31m${vote3}\x1b[0m votos.`
   );
   console.log(
-    `O candidato ${candidates[3]["Candidato"]} teve ${voteNull} votos.`
+    `O candidato ${candidates[3]["Candidato"]} teve \x1b[31m${voteNull}\x1b[0m votos.`
   );
   console.log(
-    `O candidato ${candidates[4]["Candidato"]} teve ${voteBlank} votos.`
+    `O candidato ${candidates[4]["Candidato"]} teve \x1b[31m${voteBlank}\x1b[0m votos.`
   );
 
   if (vote1 > vote2 && vote1 > vote3) {
     console.log(
-      `O candidato \x1b[33m${candidates[0]["Candidato"]}\x1b[0m ganhou a eleição.`
+      `\nO candidato \x1b[33m${candidates[0]["Candidato"]}\x1b[0m ganhou a eleição.`
     );
   } else if (vote2 > vote1 && vote2 > vote3) {
     console.log(
-      `O candidato \x1b[32m${candidates[1]["Candidato"]}\x1b[0m ganhou a eleição.`
+      `\nO candidato \x1b[32m${candidates[1]["Candidato"]}\x1b[0m ganhou a eleição.`
     );
   } else if (vote3 > vote1 && vote3 > vote2) {
     console.log(
-      `O candidato \x1b[34m${candidates[2]["Candidato"]}\x1b[0m ganhou a eleição.`
+      `\nO candidato \x1b[34m${candidates[2]["Candidato"]}\x1b[0m ganhou a eleição.`
     );
   } else {
-    console.log(`Não teve ganhadores nessa eleição.`);
+    console.log(`\nNão teve ganhadores nessa eleição.`);
   }
 };
 
@@ -73,6 +73,27 @@ table = (input) => {
     result += `${r}\n`;
   }
   console.log(result);
+};
+
+//ARROW FUNCTION PARA VALIDAÇÃO SE O USUARIO ESTÁ APTO PARA VOTAÇÃO.
+ageValidate = (age) => {
+  if (!isNaN(age) && age >= 16 && age < 18 && age % 1 == 0 && age.length != 0) {
+    console.log(`${age} você tem ${age} anos, seu voto é opcional.`);
+  } else if (
+    !isNaN(age) &&
+    age >= 18 &&
+    age < 70 &&
+    age % 1 == 0 &&
+    age.length != 0
+  ) {
+    console.log(`${age} você tem ${age} anos, seu voto é obrigatório.`);
+  } else if (!isNaN(age) && age >= 70 && age % 1 == 0 && age.length != 0) {
+    console.log(`${age} você tem ${age} anos, seu voto é opcional.`);
+  } else {
+    console.log(`Você não está apto para votação. `);
+  }
+  return age;
+  console.clear();
 };
 
 //ARROW FUNCTION PARA CONTAGEM DOS VOTOS
@@ -124,48 +145,44 @@ while (!isNaN(userName)) {
 //ENTRADA E VALIDAÇÃO DO IDADE DO USUARIO
 let userAge;
 while (true) {
-  console.log(`Você precisa ter mais que 16 anos para votar. `);
-  userAge = +prompt(`Digite sua idade: `);
-  
-  agrValidate = () => {
+  console.log(
+    `Você precisa ter 16 anos ou mais, para estar apto para votação.`
+  );
+  userAge = +prompt(`Digite sua idade:  `);
   if (
     !isNaN(userAge) &&
-    userAge >= 16 &&
-    userAge < 18 &&
+    userAge > 0 &&
     userAge % 1 == 0 &&
     userAge.length != 0
   ) {
-    console.log(`${userName} você tem ${userAge} anos, seu voto é opcional.`);
-    break;
-  } else if (
-    !isNaN(userAge) &&
-    userAge >= 18 &&
-    userAge < 70 &&
-    userAge % 1 == 0 &&
-    userAge.length != 0
-  ) {
-    console.log(
-      `${userName} você tem ${userAge} anos, seu voto é obrigatório.`
-    );
-    break;
-  } else if (
-    !isNaN(userAge) &&
-    userAge >= 70 &&
-    userAge % 1 == 0 &&
-    userAge.length != 0
-  ) {
-    console.log(`${userName} você tem ${userAge} anos, seu voto é opcional.`);
     break;
   }
-  console.clear();
 }
-}
+
+ageValidate(userAge);
+
 console.log(`As opções de voto são: `);
 
 table(candidates);
 
-let userVote = +prompt(`Digite seu voto de acordo com a opção desejada: `);
+let userVote;
 
-voteCount(userVote);
+let exit;
+
+while (true) {
+  userVote = +prompt(`Digite seu voto de acordo com a opção desejada: `);
+
+  voteCount(userVote);
+
+  console.log();
+
+  exit = prompt(`Deseja continuar a votação? `);
+
+  if (exit == `não` || exit == `n` || exit == `nao`) {
+    break;
+    console.clear();
+  }
+  console.clear();
+}
 
 displayResult();
