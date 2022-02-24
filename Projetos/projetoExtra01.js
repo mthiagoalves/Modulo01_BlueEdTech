@@ -239,4 +239,26 @@ if ((userAge > 15 && userAge < 18) || userAge > 70) {
     console.log(`Volte quando sua idade for maior ou igual 16 para votar.`);
   }
   console.log(`Obrigado por participar da eleição.`);
+} else if (userAge >= 18 && userAge < 70) {
+  if (confirmar == "sim" || confirmar == "s") {
+    console.log(`As opções de voto são: `);
+
+    table(candidates);
+
+    //CONTAGEM E VALIDAÇÃO DOS VOTOS
+    do {
+      userVote = +prompt(`Digite seu voto de acordo com a opção desejada: `);
+
+      voteCount(userVote);
+
+      console.log();
+
+      //CONDIÇÃO PARA CONTINUAR A VOTAÇÃO
+      sair = prompt(`Deseja continuar a votação? `).toLowerCase;
+    } while (sair != `sim` || sair != `s`);
+
+    console.clear();
+
+    displayResult();
+  }
 }
