@@ -8,7 +8,7 @@ let userName;
 let userAge;
 let cpf;
 let userVote;
-let exit;
+let sair;
 let vote1 = 0;
 let vote2 = 0;
 let vote3 = 0;
@@ -16,7 +16,7 @@ let voteNull = 0;
 let voteBlank = 0;
 let sum;
 let rest;
-let confirm;
+let confirmar;
 
 //ARROW FUNCTION PARA CONTAGEM DOS VOTOS E EXIBIÇÃO DO RESULTADO
 displayResult = () => {
@@ -210,17 +210,15 @@ while (true) {
 ageValidate(userAge);
 
 if ((userAge > 15 && userAge < 18) || userAge > 70) {
-  confirm = prompt(`Seu voto é opcional, deseja continuar? `).toLowerCase;
-
-  if (confirm == `sim` || exit == `s`) {
+  confirmar = prompt(`Seu voto é opcional, deseja continuar? `).toLowerCase();
+  console.log(confirmar);
+  if (confirmar == "sim" || confirmar == "s") {
     console.log(`As opções de voto são: `);
 
-    // table(candidates);
+    table(candidates);
 
     //CONTAGEM E VALIDAÇÃO DOS VOTOS
     do {
-      table(candidates);
-
       userVote = +prompt(`Digite seu voto de acordo com a opção desejada: `);
 
       voteCount(userVote);
@@ -228,8 +226,8 @@ if ((userAge > 15 && userAge < 18) || userAge > 70) {
       console.log();
 
       //CONDIÇÃO PARA CONTINUAR A VOTAÇÃO
-      exit = prompt(`Deseja continuar a votação? `).toLowerCase;
-    } while (exit != `sim` || exit != `s`);
+      sair = prompt(`Deseja continuar a votação? `).toLowerCase;
+    } while (sair != `sim` || sair != `s`);
 
     console.clear();
 
