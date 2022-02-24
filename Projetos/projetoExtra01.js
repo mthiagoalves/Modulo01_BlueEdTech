@@ -4,9 +4,9 @@ const { Transform } = require("stream");
 
 //PRINCIPAIS VARIAVEIS
 
-const userName;
-const userAge;
-const cpf;
+let userName;
+let userAge;
+let cpf;
 let userVote;
 let exit;
 let vote1 = 0;
@@ -207,44 +207,36 @@ while (true) {
   console.log(`Digite uma idade válida.`);
 }
 
-// ENTRADA E VALIDAÇÃO DA IDADE DO USUARIO
 ageValidate(userAge);
 
-if (userAge > 15) {
-  
-  if (userAge < 18 || userAge > 70){
-    confirm = prompt(`Seu voto é opcional, deseja continuar? `).toLowerCase
+if ((userAge > 15 && userAge < 18) || userAge > 70) {
+  confirm = prompt(`Seu voto é opcional, deseja continuar? `).toLowerCase;
 
-    if(confirm == `sim` || exit == `s`){
+  if (confirm == `sim` || exit == `s`) {
+    console.log(`As opções de voto são: `);
 
-  console.log(`As opções de voto são: `);
+    table(candidates);
 
-  table(candidates);
+    //CONTAGEM E VALIDAÇÃO DOS VOTOS
+    do {
+      userVote = +prompt(`Digite seu voto de acordo com a opção desejada: `);
 
-  //CONTAGEM E VALIDAÇÃO DOS VOTOS
-  while (true) {
-    userVote = +prompt(`Digite seu voto de acordo com a opção desejada: `);
+      voteCount(userVote);
 
-    voteCount(userVote);
+      console.log();
 
-    console.log();
+      //CONDIÇÃO PARA CONTINUAR A VOTAÇÃO
+      exit = prompt(`Deseja continuar a votação? `).toLowerCase;
+    } while (exit != `sim` || exit != `s`);
 
-    //CONDIÇÃO PARA CONTINUAR A VOTAÇÃO
-    exit = prompt(`Deseja continuar a votação? `).toLowerCase;
-
-    if (exit == `não` || exit == `n` || exit == `nao`) {
-    }
     console.clear();
-    break;
+
+    displayResult();
   }
 
-  displayResult();
-}
-
-//CASO O USUARIO SEJA MENOR QUE 16 ANOS. AUTOMÁTICAMENTE REPROVA-O.
-else {
-  console.log(`Volte quando sua idade for maior ou igual 16 para votar.`);
-}
-console.log(`Obrigado por participar da eleição.`)
-}
+  //CASO O USUARIO SEJA MENOR QUE 16 ANOS. AUTOMÁTICAMENTE REPROVA-O.
+  else {
+    console.log(`Volte quando sua idade for maior ou igual 16 para votar.`);
+  }
+  console.log(`Obrigado por participar da eleição.`);
 }
