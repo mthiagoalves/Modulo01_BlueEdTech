@@ -166,6 +166,8 @@ const candidates = [
 ];
 
 //*************************************** INICIO ***************************************
+console.log(`As votações iniciaram de acordo com a idade digitada. Caso a idade for menor que 16, 
+o usuário não estará apto para voto. Escolha com sabedoria seu voto. O futuro do pais depende de você!\n`);
 
 //ENTRADA DO CPF DO USUARIO VALIDANDO COM A ARROW FUNCTION
 do {
@@ -211,7 +213,11 @@ ageValidate(userAge);
 
 if ((userAge > 15 && userAge < 18) || userAge > 70) {
   confirmar = prompt(`Seu voto é opcional, deseja continuar? `).toLowerCase();
+
   console.log(confirmar);
+
+  console.clear();
+
   if (confirmar == "sim" || confirmar == "s") {
     console.log(`As opções de voto são: `);
 
@@ -240,25 +246,25 @@ if ((userAge > 15 && userAge < 18) || userAge > 70) {
   }
   console.log(`Obrigado por participar da eleição.`);
 } else if (userAge >= 18 && userAge < 70) {
-  if (confirmar == "sim" || confirmar == "s") {
-    console.log(`As opções de voto são: `);
+  console.log(`As opções de voto são: `);
 
-    table(candidates);
+  table(candidates);
 
-    //CONTAGEM E VALIDAÇÃO DOS VOTOS
-    do {
-      userVote = +prompt(`Digite seu voto de acordo com a opção desejada: `);
+  //CONTAGEM E VALIDAÇÃO DOS VOTOS
+  do {
+    userVote = +prompt(`Digite seu voto de acordo com a opção desejada: `);
 
-      voteCount(userVote);
+    voteCount(userVote);
 
-      console.log();
+    console.log();
 
-      //CONDIÇÃO PARA CONTINUAR A VOTAÇÃO
-      sair = prompt(`Deseja continuar a votação? `).toLowerCase;
-    } while (sair != `sim` || sair != `s`);
+    //CONDIÇÃO PARA CONTINUAR A VOTAÇÃO
+    sair = prompt(`Deseja continuar a votação? `).toLowerCase;
 
     console.clear();
+  } while (sair == `nao` || sair == `n`);
 
-    displayResult();
-  }
+  console.clear();
+
+  displayResult();
 }
