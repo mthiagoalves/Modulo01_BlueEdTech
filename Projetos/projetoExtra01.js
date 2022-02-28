@@ -46,7 +46,7 @@ displayResult = () => {
     );
   } else if (vote3 > vote1 && vote3 > vote2) {
     console.log(
-      `O candidato \x1b[34m${candidates[2]["Candidato"]}\x1b[0m ganhou a eleição.`
+      `\nO candidato \x1b[34m${candidates[2]["Candidato"]}\x1b[0m ganhou a eleição.`
     );
   } else {
     console.log(`\nNão teve ganhadores nessa eleição.`);
