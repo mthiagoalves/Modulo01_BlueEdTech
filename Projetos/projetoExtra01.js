@@ -158,8 +158,8 @@ testCpf = (cpf) => {
 
 //ARRAY COM AS ESCOLHAS DO USUARIO.
 const candidates = [
-  { Opção: 1, Candidato: "Camila" },
-  { Opção: 2, Candidato: "Kellbber" },
+  { Opção: 1, Candidato: "Leonardo" },
+  { Opção: 2, Candidato: "Maria Eduarda" },
   { Opção: 3, Candidato: "Thiago" },
   { Opção: 4, Candidato: "Voto Nulo" },
   { Opção: 5, Candidato: "Voto em Branco" },
