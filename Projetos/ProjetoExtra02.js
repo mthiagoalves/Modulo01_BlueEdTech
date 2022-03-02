@@ -2,11 +2,19 @@ const prompt = require("prompt-sync")();
 
 let numGame;
 let numPlayers;
-const choice = [1, 2, 3, 4, 5, 6];
-const players = [];
-let choiseRandom;
-let resultRandon;
+let choice; 
+let players = {};
+const playerList = [];
+// let choiseRandom;
+// let resultRandon;
 let continuar;
+
+//FUNÇÃO CONSTRUTORA DE OBJETO
+function player (name) {
+  this.name = name;
+  this.score = 0;
+
+}
 
 while (true) {
 
@@ -38,11 +46,47 @@ while (true) {
 
 continuar = prompt (`Aperte ENTER para continuar.\n`);
 
+
+for (i = 0; i < numPlayers; i++) {
+
+  players = new player (prompt(`Digite o nome do ${i+1}º jogador: `));
+  
+  playerList.push(players);
+
+  }
+
+
 for (i = 0; i < numGame; i++) {
 
-  choiseRandom = [Math.floor(Math.random() * choice.length)];
-  resultRandon = choice[choiseRandom];
-  console.log(resultRandon);
+  choice = Math.floor(Math.random() * 6) + 1;
 
+  continuar = prompt (`Aperte ENTER para girar o dado. `);
+
+  playerList [0][`score`] = choice;
+
+  console.log(playerList);
+ 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// choiseRandom = [Math.floor(Math.random() * choice.length)];
+// resultRandon = choice[choiseRandom];
+// playerList[0][`score`] = resultRandon
