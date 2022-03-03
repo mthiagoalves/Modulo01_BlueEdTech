@@ -5,9 +5,9 @@ let numPlayers;
 let choice; 
 let players = {};
 const playerList = [];
-// let choiseRandom;
-// let resultRandon;
+const result = [];
 let continuar;
+let numPlays;
 
 //FUNÇÃO CONSTRUTORA DE OBJETO
 function player (name) {
@@ -15,6 +15,17 @@ function player (name) {
   this.score = 0;
 
 }
+
+//ARROW FUNCTION PARA PAUSAR A PALAVRA "JO-KEN-PO"
+tempo = (ms) => {
+  var contar = new Date().getTime();
+  for (var i = 0; i < 3e6; i++) {
+    if (new Date().getTime() - contar > ms) {
+      break;
+    }
+  }
+};
+
 
 while (true) {
 
@@ -44,7 +55,7 @@ while (true) {
   }
 }
 
-continuar = prompt (`Aperte ENTER para continuar.\n`);
+// continuar = prompt (`Aperte ENTER para continuar.\n`);
 
 
 for (i = 0; i < numPlayers; i++) {
@@ -53,40 +64,27 @@ for (i = 0; i < numPlayers; i++) {
   
   playerList.push(players);
 
-  }
-
-
-for (i = 0; i < numGame; i++) {
-
-  choice = Math.floor(Math.random() * 6) + 1;
-
-  continuar = prompt (`Aperte ENTER para girar o dado. `);
-
-  playerList [i][`score`] = choice;
-
-  console.log(playerList);
- 
 }
 
+for (c = 0; c < numGame; c++) {
 
+  console.log(`\n${c+1}º turno vai começar. \n`);
 
+  for (i = 0; i < numPlayers; i++) {
+  
+  choice = Math.floor(Math.random() * 6) + 1;
 
+  continuar = prompt (`\n${playerList[i][`name`]}, aperte ENTER para girar o dado. \n`);
 
+  playerList [i][`score`] = choice;
+  
+  console.log(`\n${playerList[i][`name`]} conseguiu o numero ${choice} ao jogar o dado\n`);
+ 
+  }
 
+}
 
+console.log(result)
 
+console.log(result.length)
 
-
-
-
-
-
-
-
-
-
-
-
-// choiseRandom = [Math.floor(Math.random() * choice.length)];
-// resultRandon = choice[choiseRandom];
-// playerList[0][`score`] = resultRandon
