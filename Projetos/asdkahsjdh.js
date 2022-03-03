@@ -1,175 +1,114 @@
 const prompt = require("prompt-sync")();
-// Crie um programa onde jogadores joguem um dado e tenham resultados aleatórios.
+const { Console } = require("console");
+const { Transform } = require("stream");
 
-// O programa tem que:
+let numGame;
+let numPlayers;
+let choice; 
+let players = {};
+const playerList = [];
+const result = [];
+let continuar;
+let numPlays;
 
-// • Perguntar quantas rodadas você quer fazer; (1,0 ponto)
-// • Perguntar quantos jogadores vão jogar; (1,5 pontos)
-// • Criar um objeto pra cada jogador com nome e número tirado; (1,5 pontos)
-// • Guarda todos os objetos em uma lista; (2,0 pontos)
-// • Ordenar esses objetos, sabendo que o vencedor tirou o maior número
-// no dado. (2,0 pontos)
-// • Mostrar no final qual jogador ganhou mais rodadas e foi o grande
-// campeão. (2,0 pontos)
+//FUNÇÃO CONSTRUTORA DE OBJETO
+function player (name) {
+  this.name = name;
+  this.score = 0;
 
-// DECLARED VARIABLES
-let rodadas;
-let numeroJogadores;
-let replay
-let jogador = {
-  nome: "",
-  dado: "",
-  cont: 0
-};
-const jogadores = [];
-let jogadoresResult = [];
+}
 
-// FUNCTIONS
-
-// SLEEP FUNCTION
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if (new Date().getTime() - start > milliseconds) {
+//ARROW FUNCTION PARA PAUSAR A PALAVRA "JO-KEN-PO"
+tempo = (ms) => {
+  var contar = new Date().getTime();
+  for (var i = 0; i < 3e6; i++) {
+    if (new Date().getTime() - contar > ms) {
       break;
     }
   }
+};
+
+//ARROW FUNCTION PARA PERSONALIZAR O TEXTO INDEX DO CONSOLE.TABLE
+table = (input) => {
+  const ts = new Transform({
+    transform(chunk, enc, cb) {
+      cb(null, chunk);
+    },
+  });
+  const logger = new Console({ stdout: ts });
+  logger.table(input);
+  const table = (ts.read() || "").toString();
+  let result = "";
+  for (let row of table.split(/[\r\n]+/)) {
+    let r = row.replace(/[^┬]*┬/, "┌");
+    r = r.replace(/^├─*┼/, "├");
+    r = r.replace(/│[^│]*/, "");
+    r = r.replace(/^└─*┴/, "└");
+    r = r.replace(/'/g, " ");
+    result += `${r}\n`;
+  }
+  console.log(result);
+};
+
+
+while (true) {
+
+  numPlayers = +prompt(`Digite o número de jogadores vão jogar: `);
+
+  if (
+    !isNaN(numPlayers) &&
+    numPlayers > 0 &&
+    numPlayers % 1 == 0 &&
+    numPlayers.length != 0
+  ) {
+    break;
+  }
 }
 
-function Jogador(nome, dado, cont) {
-  this.nome = nome;
-  this.dado = dado;
-  this.cont = cont
+while (true) {
+
+  numGame = +prompt(`Digite o número de rodadas você deseja jogar: `);
+
+  if (
+    !isNaN(numGame) &&
+    numGame > 0 &&
+    numGame % 1 == 0 &&
+    numGame.length != 0
+  ) {
+    break;
+  }
 }
 
-// CODE START
-do{
-    do {
-    rodadas = +prompt("Digite a quantidade de rodadas que você deseja jogar: ");
-    sleep(500);
-    while (rodadas < 0 || isNaN(rodadas)) {
-        console.log("Quantidade de rodadas inválida!");
-        break;
-    }
-    } while (rodadas < 0);
-
-    do {
-    numeroJogadores = +prompt("Digite quantos jogadores irão jogar (max 12): ");
-    sleep(500)
-    if (numeroJogadores <= 1 || numeroJogadores > 12) {
-        console.log(`
-    Quantidade de jogadores inválido!
-    `);
-    } else {
-        console.log()
-        break;
-    }
-    } while (true)
-
-    for (x = 0; x < numeroJogadores; x++){
-        jogador.nome = prompt(`Digite o nome do ${x + 1}º jogador: `);
-        sleep(500)
-        jogador.dado = Math.ceil(Math.random() * 6);
-        jogadores.push(jogador)
-        jogador = new Jogador(jogador.nome, jogador.dado, 0);
-        
-    }
-
-    console.log(`Vamos jogar os Dados...`);
-
-    sleep(500);
-    for(i = 0 ; i < rodadas; i++){
-        console.log (`
-----------------------------------------------------------------
-                Rodada ${i+1}`)
-        sleep(1500);
-
-        for (x = 0; x < numeroJogadores; x++) {
-            console.log(`
-Está na vez do ${jogadores[x].nome}...
-Ele tirou: ${jogadores[x].dado}`);
-   
-        }
-        jogadoresResult = [...jogadores]
-        jogadoresResult.sort(function(a,b) {
-            return a.dado > b.dado ? -1 : a.dado < b.dado ? 1 : 0;
-        });
-        
-        sleep(1000);
-        if (jogadoresResult[0].dado == jogadoresResult[1]){
-            console.log('Houve empate! Rodada Anulada')
-            for (x = 0; x < numeroJogadores; x++) {
-                jogadores[x].dado = Math.ceil(Math.random() * 6)
-            }
-            continue;
-        }else{
-        console.log(`${jogadoresResult[0].nome} ganhou a rodada tirando ${jogadoresResult[0].dado}`)
-        jogadoresResult[0].cont++
-        }
-        
-        for (x = 0; x < numeroJogadores; x++) {
-            jogadores[x].dado = Math.ceil(Math.random() * 6)
-        }
-        
-
-    }
-
-    jogadoresResult.sort(function(a,b) {
-        return a.cont > b.cont ? -1 : a.cont < b.cont ? 1 : 0;
-    });
-    console.log('----------------------------------------------------------------')
-    console.table(jogadoresResult)
-    // let y = 0;
-    for (x = 0; x < numeroJogadores; x++){
-        
-        console.log(`${y+1}º Lugar: ${jogadoresResult[x].nome} com ${jogadoresResult[x].cont} vitórias.`)
-        // y++
-        // if(jogadoresResult.cont[x] == jogadoresResult.cont[x+1]){
-        //     y--
-        // }
-    
-    }
-
-    do{
-        console.log(`Querem jogar novamente?
-        1)Sim               2)Não`)
-        sleep(500)
-        replay = prompt('R: ').toLowerCase()
-        if(replay != 'sim' && replay != 'nao' && replay != 1 && replay != 2){
-            console.log(`Não entendi!`)
-        }
-    }while(replay != 'sim' && replay != 'nao' && replay != 1 && replay != 2)
-         
-    if (replay == 'nao' || replay == 2) {
-            console.log('Encerrando o jogo.')
-            break;
-    }
-        
-    
-}while(true)
+// continuar = prompt (`Aperte ENTER para continuar.\n`);
 
 
-// console.log(jogadores)
-// console.log(jogadores[0])
-// console.log(jogadores[1])
+for (i = 0; i < numPlayers; i++) {
 
+  players = new player (prompt(`Digite o nome do ${i+1}º jogador: `));
+  
+  playerList.push(players);
 
+}
 
+for (c = 0; c < numGame; c++) {
 
-///////////////////////////////
+  console.log(`\n${c+1}º turno vai começar. \n`);
 
-// const lista = [];
+  for (i = 0; i < numPlayers; i++) {
+  
+  choice = Math.floor(Math.random() * 6) + 1;
 
-// function Pessoa(nome, idade, sexo) {
-//     this.nome = nome;
-//     this.idade = idade;
-//     this.sexo = sexo;
-// }
+  continuar = prompt (`\n${playerList[i][`name`]}, aperte ENTER para girar o dado. \n`);
 
-// let pessoa = new Pessoa('leo', 24, 'M');
-// lista.push(pessoa);
+  playerList [i][`score`] += choice;
+  
+  console.log(`\n${playerList[i][`name`]} conseguiu o numero ${choice} ao jogar o dado. Ficando com ${playerList [i][`score`]} potnos\n`);
+ 
 
-// pessoa = new Pessoa('duda', 15, 'F');
-// lista.push(pessoa);
+  }
 
-// console.log(lista);
+  console.log(`O placar do ${c+1}º turno ficou em: \n`);
+
+  table(playerList);
+
+}
