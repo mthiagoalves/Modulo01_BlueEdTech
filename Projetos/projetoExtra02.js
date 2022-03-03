@@ -1,4 +1,6 @@
 const prompt = require("prompt-sync")();
+const { Console } = require("console");
+const { Transform } = require("stream");
 
 let numGame;
 let numPlayers;
@@ -24,6 +26,28 @@ tempo = (ms) => {
       break;
     }
   }
+};
+
+//ARROW FUNCTION PARA PERSONALIZAR O TEXTO INDEX DO CONSOLE.TABLE
+table = (input) => {
+  const ts = new Transform({
+    transform(chunk, enc, cb) {
+      cb(null, chunk);
+    },
+  });
+  const logger = new Console({ stdout: ts });
+  logger.table(input);
+  const table = (ts.read() || "").toString();
+  let result = "";
+  for (let row of table.split(/[\r\n]+/)) {
+    let r = row.replace(/[^┬]*┬/, "┌");
+    r = r.replace(/^├─*┼/, "├");
+    r = r.replace(/│[^│]*/, "");
+    r = r.replace(/^└─*┴/, "└");
+    r = r.replace(/'/g, " ");
+    result += `${r}\n`;
+  }
+  console.log(result);
 };
 
 
@@ -76,15 +100,17 @@ for (c = 0; c < numGame; c++) {
 
   continuar = prompt (`\n${playerList[i][`name`]}, aperte ENTER para girar o dado. \n`);
 
-  playerList [i][`score`] = choice;
+  playerList [i][`score`] += choice;
   
-  console.log(`\n${playerList[i][`name`]} conseguiu o numero ${choice} ao jogar o dado\n`);
+  console.log(`\n${playerList[i][`name`]} conseguiu o numero ${choice} ao jogar o dado. Ficando com ${playerList [i][`score`]} potnos\n`);
  
+
   }
+
+  console.log(`O placar do ${c+1}º turno ficou em: \n`);
+
+  table(playerList);
 
 }
 
-console.log(result)
-
-console.log(result.length)
 
